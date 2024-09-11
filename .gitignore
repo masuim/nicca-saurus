@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -30,6 +28,7 @@ yarn-error.log*
 .env
 .env.dev
 .dev.vars
+.env.local
 
 # vercel
 .vercel
@@ -41,8 +40,15 @@ next-env.d.ts
 # キャッシュ
 /.cache
 
-# Prisma
-/prisma/*.db
-
 # ビルドディレクトリ
 /dist
+
+# Prisma
+prisma/dev.db-journal
+prisma/dev.db
+prisma/test.db-journal
+prisma/test.db
+prisma/test.db-journal
+prisma/test.db
+/prisma/*.db
+prisma/migrations/migration_lock.toml
