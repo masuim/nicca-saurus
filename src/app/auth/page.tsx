@@ -13,28 +13,29 @@ export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (
-    <div className="flex h-screen">
-      <div
-        className="flex w-2/5 items-center justify-center"
-        style={{
-          backgroundColor: '#082F68',
-        }}
-      >
+    <div className="flex min-h-screen flex-col md:flex-row">
+      <header className="flex h-12 items-center bg-[#082F68] px-4 md:hidden">
+        <Image
+          src={logo}
+          alt="App Logo"
+          width={100}
+          height={24}
+          className="h-full w-auto object-contain"
+        />
+      </header>
+      <div className="hidden w-full items-center justify-center bg-[#082F68] p-4 md:flex md:w-2/5 md:p-8">
         <Image
           src={logo}
           alt="rex"
           width={300}
           height={300}
-          className="h-auto w-3/4"
-          style={{
-            marginTop: '20%',
-          }}
+          className="w-3/4 max-w-xs sm:max-w-sm"
         />
       </div>
-      <div className="flex w-3/5 items-center justify-center">
-        <Card className="w-[350px]">
+      <div className="flex w-full items-center justify-center p-4 md:w-3/5 md:p-8">
+        <Card className="w-full max-w-sm sm:max-w-md">
           <CardHeader className="flex items-center justify-center">
-            <CardTitle>{isSignUp ? 'Sign Up' : 'Login'}</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl">{isSignUp ? 'Sign Up' : 'Login'}</CardTitle>
           </CardHeader>
           <CardContent>
             {isSignUp ? (
