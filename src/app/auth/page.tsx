@@ -13,8 +13,8 @@ export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
-      <header className="flex h-12 items-center bg-primary px-4 md:hidden">
+    <div className="flex min-h-screen flex-col lg:flex-row">
+      <header className="flex h-16 items-center bg-primary px-4 lg:hidden">
         <Image
           src={logo}
           alt="App Logo"
@@ -23,7 +23,7 @@ export default function AuthPage() {
           className="mt-1 h-full w-auto object-contain"
         />
       </header>
-      <div className="hidden w-full items-center justify-center bg-primary p-4 md:flex md:w-2/5 md:p-8">
+      <div className="hidden w-full items-center justify-center bg-primary p-4 lg:flex lg:w-2/5 lg:p-8">
         <Image
           src={logo}
           alt="rex"
@@ -32,9 +32,9 @@ export default function AuthPage() {
           className="w-3/4 max-w-xs sm:max-w-sm"
         />
       </div>
-      <div className="md: mt-8 flex w-full items-center justify-center p-4 md:mt-0 md:w-3/5 md:p-8">
-        <Card className="w-full max-w-sm bg-white sm:max-w-md">
-          <CardHeader className="flex items-center justify-center">
+      <div className="lg: mt-8 flex w-full items-center justify-center p-4 lg:mt-0 lg:w-3/5 lg:p-8">
+        <Card className="w-full max-w-xs bg-white/90 px-2 sm:max-w-sm">
+          <CardHeader className="flex items-center justify-center pb-2">
             <CardTitle className="text-xl sm:text-2xl">{isSignUp ? 'Sign Up' : 'Login'}</CardTitle>
           </CardHeader>
           <CardContent>

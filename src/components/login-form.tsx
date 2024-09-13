@@ -49,7 +49,7 @@ export const LoginForm = ({ setIsSignUp }: Props) => {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="email"
@@ -79,7 +79,7 @@ export const LoginForm = ({ setIsSignUp }: Props) => {
         {form.formState.errors.root && (
           <p className="text-red-500">{form.formState.errors.root.message}</p>
         )}
-        <div className="flex justify-center">
+        <div className="mt-6 flex justify-center">
           <Button type="submit" variant="main" disabled={form.formState.isSubmitting} size="lg">
             {form.formState.isSubmitting ? 'Logging in...' : 'Login'}
           </Button>

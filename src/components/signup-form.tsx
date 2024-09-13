@@ -73,7 +73,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-0">
         <FormField
           control={form.control}
           name="name"
@@ -104,7 +104,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="mb-2">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input type="password" {...field} />
@@ -117,7 +117,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="mb-2">
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
                 <Input type="password" {...field} />
@@ -129,7 +129,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
         {form.formState.errors.root && (
           <p className="text-red-500">{form.formState.errors.root.message}</p>
         )}
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-6">
           <Button type="submit" variant="main" disabled={form.formState.isSubmitting} size="lg">
             {form.formState.isSubmitting ? 'Signing up...' : 'Sign Up'}
           </Button>
