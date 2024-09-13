@@ -14,7 +14,7 @@ export default function AuthPage() {
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <header className="flex h-12 items-center bg-[#082F68] px-4 md:hidden">
+      <header className="bg-primary flex h-12 items-center px-4 md:hidden">
         <Image
           src={logo}
           alt="App Logo"
@@ -23,7 +23,7 @@ export default function AuthPage() {
           className="h-full w-auto object-contain"
         />
       </header>
-      <div className="hidden w-full items-center justify-center bg-[#082F68] p-4 md:flex md:w-2/5 md:p-8">
+      <div className="bg-primary hidden w-full items-center justify-center p-4 md:flex md:w-2/5 md:p-8">
         <Image
           src={logo}
           alt="rex"
