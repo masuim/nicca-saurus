@@ -14,16 +14,16 @@ export default function AuthPage() {
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <header className="bg-primary flex h-12 items-center px-4 md:hidden">
+      <header className="flex h-12 items-center bg-primary px-4 md:hidden">
         <Image
           src={logo}
           alt="App Logo"
           width={100}
           height={24}
-          className="h-full w-auto object-contain"
+          className="mt-1 h-full w-auto object-contain"
         />
       </header>
-      <div className="bg-primary hidden w-full items-center justify-center p-4 md:flex md:w-2/5 md:p-8">
+      <div className="hidden w-full items-center justify-center bg-primary p-4 md:flex md:w-2/5 md:p-8">
         <Image
           src={logo}
           alt="rex"
@@ -32,7 +32,7 @@ export default function AuthPage() {
           className="w-3/4 max-w-xs sm:max-w-sm"
         />
       </div>
-      <div className="flex w-full items-center justify-center p-4 md:w-3/5 md:p-8">
+      <div className="md: mt-8 flex w-full items-center justify-center p-4 md:mt-0 md:w-3/5 md:p-8">
         <Card className="w-full max-w-sm sm:max-w-md">
           <CardHeader className="flex items-center justify-center">
             <CardTitle className="text-xl sm:text-2xl">{isSignUp ? 'Sign Up' : 'Login'}</CardTitle>

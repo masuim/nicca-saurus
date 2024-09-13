@@ -134,16 +134,18 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
             {form.formState.isSubmitting ? 'Signing up...' : 'Sign Up'}
           </Button>
         </div>
-
-        <p className="text-center text-[10px]">
-          すでにアカウントをお持ちの方は、こちらから
-          <button
-            className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
-            onClick={() => setIsSignUp(false)}
-          >
-            Login
-          </button>
-          してください
+        <p className="text-muted-foreground mt-4 text-center text-[12px]">
+          <span className="block md:inline">すでにアカウントをお持ちの方は、</span>
+          <span className="block md:inline">
+            こちらから
+            <button
+              className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
+              onClick={() => setIsSignUp(true)}
+            >
+              Login
+            </button>
+            してください
+          </span>
         </p>
       </form>
     </FormProvider>

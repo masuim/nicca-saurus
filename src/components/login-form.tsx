@@ -85,15 +85,18 @@ export const LoginForm = ({ setIsSignUp }: Props) => {
           </Button>
         </div>
 
-        <p className="text-center text-[10px]">
-          アカウントをお持ちでない方は、こちらから
-          <button
-            className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
-            onClick={() => setIsSignUp(true)}
-          >
-            Sign Up
-          </button>
-          してください
+        <p className="text-muted-foreground mt-4 text-center text-[12px]">
+          <span className="block md:inline">アカウントをお持ちでない方は、</span>
+          <span className="block md:inline">
+            こちらから
+            <button
+              className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
+              onClick={() => setIsSignUp(true)}
+            >
+              Sign Up
+            </button>
+            してください
+          </span>
         </p>
       </form>
     </FormProvider>
