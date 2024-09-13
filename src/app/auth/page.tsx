@@ -33,7 +33,7 @@ export default function AuthPage() {
         />
       </div>
       <div className="md: mt-8 flex w-full items-center justify-center p-4 md:mt-0 md:w-3/5 md:p-8">
-        <Card className="w-full max-w-sm sm:max-w-md">
+        <Card className="w-full max-w-sm bg-white sm:max-w-md">
           <CardHeader className="flex items-center justify-center">
             <CardTitle className="text-xl sm:text-2xl">{isSignUp ? 'Sign Up' : 'Login'}</CardTitle>
           </CardHeader>

@@ -9,6 +9,9 @@ const config: Config = {
         foreground: 'var(--foreground)',
         primary: '#082F68',
       },
+      fontFamily: {
+        dotgothic: ['"DotGothic16"', 'sans-serif'],
+      },
     },
     screens: {
       sm: '640px', //640px以上の画面幅で適用

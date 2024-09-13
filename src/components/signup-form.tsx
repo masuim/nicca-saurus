@@ -140,7 +140,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
             こちらから
             <button
               className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
-              onClick={() => setIsSignUp(true)}
+              onClick={() => setIsSignUp(false)}
             >
               Login
             </button>
