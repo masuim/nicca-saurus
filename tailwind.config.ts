@@ -8,6 +8,7 @@ const config: Config = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         primary: '#082F68',
+        error: '#E53E3E',
       },
       fontFamily: {
         dotgothic: ['"DotGothic16"', 'sans-serif'],

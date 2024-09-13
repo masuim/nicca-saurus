@@ -86,8 +86,8 @@ export const LoginForm = ({ setIsSignUp }: Props) => {
         </div>
 
         <p className="text-muted-foreground mt-4 text-center text-[12px]">
-          <span className="block md:inline">アカウントをお持ちでない方は、</span>
-          <span className="block md:inline">
+          <span className="block">アカウントをお持ちでない方は、</span>
+          <span>
             こちらから
             <button
               className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"

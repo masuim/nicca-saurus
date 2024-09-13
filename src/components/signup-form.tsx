@@ -58,7 +58,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
         if (result?.error) {
           form.setError('root', { message: result.error });
         } else {
-          router.push('/dashboard');
+          router.push('/');
         }
       } else {
         const error = await response.json();
@@ -135,8 +135,8 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
           </Button>
         </div>
         <p className="text-muted-foreground mt-4 text-center text-[12px]">
-          <span className="block md:inline">すでにアカウントをお持ちの方は、</span>
-          <span className="block md:inline">
+          <span className="block">すでにアカウントをお持ちの方は、</span>
+          <span>
             こちらから
             <button
               className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
