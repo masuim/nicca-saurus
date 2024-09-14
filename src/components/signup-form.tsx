@@ -1,30 +1,27 @@
-import { Button } from '@/components/ui/button';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { FormProvider, useForm } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-type Props = {
-  setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import { AuthForm } from './common/auth-form';
 
 const formSchema = z
   .object({
-    name: z.string().min(1, 'Name is required'),
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters long'),
-    confirmPassword: z.string(),
+    name: z.string().min(1, '名前は必須です'),
+    email: z.string().email('無効なメールアドレスです'),
+    password: z.string().min(6, 'パスワードは6文字以上である必要があります'),
+    confirmPassword: z.string().min(1, 'パスワード（確認）は必須です'),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: 'パスワードが一致しません',
     path: ['confirmPassword'],
   });
 
-export const SignUpForm = ({ setIsSignUp }: Props) => {
+export const SignUpForm = ({
+  setIsSignUp,
+}: {
+  setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -66,90 +63,24 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
       }
     } catch (err) {
       form.setError('root', {
-        message: 'An unexpected error occurred during sign up',
+        message: 'サインアップ中に予期せぬエラーが発生しました',
       });
     }
   };
 
   return (
-    <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-0">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem className="mb-2">
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem className="mb-2">
-              <FormLabel>Confirm Password</FormLabel>
-              <FormControl>
-                <Input type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {form.formState.errors.root && (
-          <p className="text-red-500">{form.formState.errors.root.message}</p>
-        )}
-        <div className="flex justify-center pt-6">
-          <Button type="submit" variant="main" disabled={form.formState.isSubmitting} size="lg">
-            {form.formState.isSubmitting ? 'Signing up...' : 'Sign Up'}
-          </Button>
-        </div>
-        <p className="text-muted-foreground mt-4 text-center text-[12px]">
-          <span className="block">すでにアカウントをお持ちの方は、</span>
-          <span>
-            こちらから
-            <button
-              className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
-              onClick={() => setIsSignUp(false)}
-            >
-              Login
-            </button>
-            してください
-          </span>
-        </p>
-      </form>
-    </FormProvider>
+    <AuthForm
+      form={form}
+      onSubmit={onSubmit}
+      fields={[
+        { name: 'name', label: '名前', type: 'text' },
+        { name: 'email', label: 'メールアドレス', type: 'email' },
+        { name: 'password', label: 'パスワード', type: 'password' },
+        { name: 'confirmPassword', label: 'パスワード（確認）', type: 'password' },
+      ]}
+      submitText="サインアップ"
+      switchText="すでにアカウントをお持ちの方は、"
+      onSwitch={() => setIsSignUp(false)}
+    />
   );
 };
-
-export default SignUpForm;
