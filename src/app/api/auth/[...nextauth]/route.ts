@@ -27,13 +27,8 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials: Record<'email' | 'password', string> | undefined) {
-        if (
-          !credentials?.email ||
-          !credentials?.password ||
-          typeof credentials.email !== 'string' ||
-          typeof credentials.password !== 'string'
-        ) {
-          return null;
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error('メールアドレスとパスワードを入力してください');
         }
 
         const user = await prisma.user.findUnique({
@@ -41,13 +36,13 @@ export const authOptions: AuthOptions = {
         });
 
         if (!user) {
-          return null;
+          throw new Error('ユーザーが見つかりません');
         }
 
         const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isPasswordValid) {
-          return null;
+          throw new Error('パスワードが正しくありません');
         }
 
         return {
