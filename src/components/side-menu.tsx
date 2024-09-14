@@ -23,6 +23,16 @@ export function SideMenu() {
           </li>
           <li className="mb-4">
             <button className="w-full justify-start bg-primary p-2 text-left text-white hover:bg-[#0A3D8F]">
+              日課詳細
+            </button>
+          </li>
+          <li className="mb-4">
+            <button className="w-full justify-start bg-primary p-2 text-left text-white hover:bg-[#0A3D8F]">
+              日課一覧
+            </button>
+          </li>
+          <li className="mb-4">
+            <button className="w-full justify-start bg-primary p-2 text-left text-white hover:bg-[#0A3D8F]">
               日課削除
             </button>
           </li>
