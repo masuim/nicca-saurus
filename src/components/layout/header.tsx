@@ -15,7 +15,7 @@ export function Header() {
   };
 
   return (
-    <header className="flex h-16 items-center justify-between bg-primary px-4">
+    <header className="flex h-16 items-center justify-between bg-primary px-4 lg:hidden">
       <Link href="/">
         <Image
           src={logo}
