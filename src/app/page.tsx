@@ -2,7 +2,7 @@
 
 import { Header } from '@/components/layout/header';
 import { MainContents } from '@/components/main-contents';
-import { SideMenu } from '@/components/side-menu';
+import { SideMenu } from '@/components/side-menu/side-menu';
 import { useState } from 'react';
 
 export default function Home() {
