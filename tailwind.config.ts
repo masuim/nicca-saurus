@@ -7,9 +7,20 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        primary: '#082F68',
+        error: '#E53E3E',
       },
+      fontFamily: {
+        dotgothic: ['"DotGothic16"', 'sans-serif'],
+      },
+    },
+    screens: {
+      sm: '640px', //640px以上の画面幅で適用
+      md: '768px', //768px以上の画面幅で適用
+      lg: '1024px', //1024px以上の画面幅で適用
     },
   },
   plugins: [],
 };
+
 export default config;

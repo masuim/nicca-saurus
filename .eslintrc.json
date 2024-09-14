@@ -9,15 +9,7 @@
     "plugin:jsx-a11y/recommended",
     "prettier"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "react-hooks",
-    "tailwindcss",
-    "import",
-    "simple-import-sort",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "tailwindcss", "import", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -30,8 +22,6 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     "tailwindcss/no-custom-classname": "off",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/label-has-associated-control": [
@@ -40,11 +30,17 @@
         "assert": "either",
         "depth": 25
       }
-    ]
+    ],
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   },
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   }
 }
