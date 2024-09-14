@@ -35,7 +35,7 @@ export const LoginForm = ({
       if (result?.error) {
         form.setError('root', { message: result.error });
       } else {
-        router.push('/dashboard');
+        router.push('/');
       }
     } catch (err) {
       form.setError('root', {
