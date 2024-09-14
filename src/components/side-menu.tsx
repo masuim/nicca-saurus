@@ -4,9 +4,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import appLogo from '@/app/images/app-name/app-name-2column.png';
+import { signOut } from 'next-auth/react';
 
 export function SideMenu() {
   const [isRegisterTaskModalOpen, setIsRegisterTaskModalOpen] = useState(false);
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: '/auth' });
+  };
 
   return (
     <div className="hidden w-1/5 bg-primary p-4 text-white lg:block">
@@ -37,8 +42,11 @@ export function SideMenu() {
             </button>
           </li>
           <li className="mb-4">
-            <button className="w-full justify-start bg-primary p-2 text-left text-white hover:bg-[#0A3D8F]">
-              ログアウト
+            <button
+              className="w-full justify-start bg-primary p-2 text-left text-white hover:bg-[#0A3D8F]"
+              onClick={handleSignOut}
+            >
+              サインアウト
             </button>
           </li>
         </ul>

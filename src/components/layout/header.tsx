@@ -10,7 +10,7 @@ import logo from '@/app/images/logos/bg-removed-logo.png';
 export function Header() {
   const { data: session } = useSession();
 
-  const handleLogout = async () => {
+  const handleSignOut = async () => {
     await signOut({ callbackUrl: '/auth' });
   };
 
@@ -26,8 +26,8 @@ export function Header() {
         />
       </Link>
       {session ? (
-        <Button onClick={handleLogout} variant="outline" size="sm">
-          ログアウト
+        <Button onClick={handleSignOut} variant="outline" size="sm">
+          サインアウト
         </Button>
       ) : null}
     </header>
