@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { Header } from '@/components/layout/header';
 import { LoginForm } from '@/components/login-form';
 import { SignUpForm } from '@/components/signup-form';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,15 +15,7 @@ export default function AuthPage() {
 
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
-      <header className="flex h-16 items-center bg-primary px-4 lg:hidden">
-        <Image
-          src={logo}
-          alt="App Logo"
-          width={100}
-          height={24}
-          className="mt-1 h-full w-auto object-contain"
-        />
-      </header>
+      <Header />
       <div className="hidden w-full items-center justify-center bg-primary p-4 lg:flex lg:w-2/5 lg:p-8">
         <Image
           src={logo}
