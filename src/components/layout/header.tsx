@@ -2,12 +2,13 @@
 
 import { Button } from '@/components/ui/button';
 import { useFlashMessage } from '@/contexts/flash-message-context';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import logo from '@/app/images/logos/bg-removed-logo.png';
+import { signOutUser } from '@/services/auth-service';
 
 export const Header = () => {
   const { data: session } = useSession();
@@ -16,7 +17,7 @@ export const Header = () => {
 
   const handleSignOut = async () => {
     try {
-      await signOut({ redirect: false });
+      await signOutUser();
       showFlashMessage('サインアウトしました', 'success');
       router.push('/auth');
     } catch (error) {
