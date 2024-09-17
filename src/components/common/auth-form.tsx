@@ -59,7 +59,7 @@ export const AuthForm = <T extends FormValues>({
           <span>
             こちらから
             <button
-              className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
+              className="mx-0.25 cursor-pointer rounded-md border-none p-1 font-extrabold text-blue-600"
               onClick={onSwitch}
             >
               {submitText === 'サインアップ' ? ' Sign In ' : ' Sign Up '}
