@@ -62,7 +62,7 @@ export function AuthForm<T extends FormValues>({
               className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
               onClick={onSwitch}
             >
-              {submitText === 'Login' ? 'Sign Up' : 'Login'}
+              {submitText === 'サインアップ' ? ' Sign In ' : ' Sign Up '}
             </button>
             してください
           </span>

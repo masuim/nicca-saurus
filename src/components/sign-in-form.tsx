@@ -10,7 +10,7 @@ const formSchema = z.object({
   password: z.string().min(1, 'パスワードは必須です'),
 });
 
-export const LoginForm = ({
+export const SignInForm = ({
   setIsSignUp,
 }: {
   setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,7 +39,7 @@ export const LoginForm = ({
       }
     } catch (err) {
       form.setError('root', {
-        message: 'ログイン中に予期せぬエラーが発生しました',
+        message: 'サインイン中に予期せぬエラーが発生しました',
       });
     }
   };
@@ -52,7 +52,7 @@ export const LoginForm = ({
         { name: 'email', label: 'メールアドレス', type: 'email' },
         { name: 'password', label: 'パスワード', type: 'password' },
       ]}
-      submitText="ログイン"
+      submitText="サインイン"
       switchText="アカウントをお持ちでない方は、"
       onSwitch={() => setIsSignUp(true)}
     />

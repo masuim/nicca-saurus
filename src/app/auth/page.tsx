@@ -4,11 +4,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { Header } from '@/components/layout/header';
-import { LoginForm } from '@/components/login-form';
-import { SignUpForm } from '@/components/signup-form';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import logo from '@/app/images/logos/bg-removed-logo.png';
+import { SignInForm } from '@/components/sign-in-form';
+import { SignUpForm } from '@/components/sign-up-form';
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -30,13 +31,15 @@ export default function AuthPage() {
       <div className="mt-8 flex w-full items-center justify-center p-4 lg:mt-0 lg:w-3/5 lg:p-8">
         <Card className="w-full max-w-xs bg-white/90 px-2 sm:max-w-sm">
           <CardHeader className="flex items-center justify-center pb-2">
-            <CardTitle className="text-xl sm:text-2xl">{isSignUp ? 'Sign Up' : 'Login'}</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl">
+              {isSignUp ? 'Sign Up' : 'Sign In'}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             {isSignUp ? (
               <SignUpForm setIsSignUp={setIsSignUp} />
             ) : (
-              <LoginForm setIsSignUp={setIsSignUp} />
+              <SignInForm setIsSignUp={setIsSignUp} />
             )}
           </CardContent>
         </Card>
