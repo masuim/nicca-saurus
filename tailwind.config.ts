@@ -9,9 +9,20 @@ const config: Config = {
         foreground: 'var(--foreground)',
         primary: '#082F68',
         error: '#E53E3E',
+        success: '#2B6CB0',
+        info: '#3182CE',
       },
       fontFamily: {
         dotgothic: ['"DotGothic16"', 'sans-serif'],
+      },
+      keyframes: {
+        'fade-in-down': {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in-down': 'fade-in-down 0.5s ease-out',
       },
     },
     screens: {

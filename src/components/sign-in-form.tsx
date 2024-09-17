@@ -1,3 +1,6 @@
+'use client';
+
+import { useFlashMessage } from '@/contexts/flash-message-context';
 import { useSignInForm } from '@/hooks/use-auth-form';
 import { SignInFormData } from '@/schemas/auth-schemas';
 import { signInUser } from '@/services/auth-service';
@@ -11,6 +14,7 @@ type Props = {
 export const SignInForm = ({ setIsSignUp }: Props) => {
   const router = useRouter();
   const form = useSignInForm();
+  const { showFlashMessage } = useFlashMessage();
 
   const onSubmit = async (values: SignInFormData) => {
     try {
@@ -18,13 +22,15 @@ export const SignInForm = ({ setIsSignUp }: Props) => {
 
       if (result?.error) {
         form.setError('root', { message: result.error });
+        showFlashMessage(result.error, 'error');
       } else {
+        showFlashMessage('サインインに成功しました', 'success');
         router.push('/');
       }
     } catch (err) {
-      form.setError('root', {
-        message: 'サインイン中に予期せぬエラーが発生しました',
-      });
+      const errorMessage = 'サインイン中に予期せぬエラーが発生しました';
+      form.setError('root', { message: errorMessage });
+      showFlashMessage(errorMessage, 'error');
     }
   };
 

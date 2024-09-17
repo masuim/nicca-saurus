@@ -1,17 +1,27 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { useFlashMessage } from '@/contexts/flash-message-context';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import logo from '@/app/images/logos/bg-removed-logo.png';
 
 export const Header = () => {
   const { data: session } = useSession();
+  const { showFlashMessage } = useFlashMessage();
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    await signOut({ callbackUrl: '/auth' });
+    try {
+      await signOut({ redirect: false });
+      showFlashMessage('サインアウトしました', 'success');
+      router.push('/auth');
+    } catch (error) {
+      showFlashMessage('サインアウト中にエラーが発生しました', 'error');
+    }
   };
 
   return (

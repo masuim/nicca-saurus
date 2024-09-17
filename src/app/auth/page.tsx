@@ -28,7 +28,7 @@ export default function AuthPage() {
           className="w-3/4 max-w-xs sm:max-w-sm"
         />
       </div>
-      <div className="mt-8 flex w-full items-center justify-center p-4 lg:mt-0 lg:w-3/5 lg:p-8">
+      <div className="mt-8 flex w-full items-center justify-center p-4 pt-12 lg:mt-0 lg:w-3/5 lg:p-8">
         <Card className="w-full max-w-xs bg-white/90 px-2 sm:max-w-sm">
           <CardHeader className="flex items-center justify-center pb-2">
             <CardTitle className="text-xl sm:text-2xl">

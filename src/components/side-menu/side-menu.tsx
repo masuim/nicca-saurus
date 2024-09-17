@@ -4,30 +4,42 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import appLogo from '@/app/images/app-name/app-name-2column.png';
-import { signOut } from 'next-auth/react';
+import { signOutUser } from '@/services/auth-service';
 
 import { MenuButton } from './menu-button';
+
+import { useFlashMessage } from '@/contexts/flash-message-context';
+import { useRouter } from 'next/navigation';
 
 type MenuItem = {
   label: string;
   onClick?: () => void;
 };
 
-const handleSignOut = async () => {
-  await signOut({ callbackUrl: '/auth' });
-};
-
-const menuItems: MenuItem[] = [
-  // TODO: 登録モーダル作成後に追加する
-  //   { label: '日課登録', onClick: () => setIsRegisterTaskModalOpen(true) },
-  { label: '日課登録', onClick: () => alert('日課登録クリック！') },
-  { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
-  { label: '日課一覧', onClick: () => alert('日課一覧クリック！') },
-  { label: '日課削除', onClick: () => alert('日課削除クリック！') },
-  { label: 'サインアウト', onClick: () => handleSignOut() },
-];
-
 export const SideMenu = () => {
+  const { showFlashMessage } = useFlashMessage();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      await signOutUser();
+      showFlashMessage('サインアウトしました', 'success');
+      router.push('/auth');
+    } catch (error) {
+      showFlashMessage('サインアウト中にエラーが発生しました', 'error');
+    }
+  };
+
+  const menuItems: MenuItem[] = [
+    // TODO: 登録モーダル作成後に追加する
+    //   { label: '日課登録', onClick: () => setIsRegisterTaskModalOpen(true) },
+    { label: '日課登録', onClick: () => alert('日課登録クリック！') },
+    { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
+    { label: '日課一覧', onClick: () => alert('日課一覧クリック！') },
+    { label: '日課削除', onClick: () => alert('日課削除クリック！') },
+    { label: 'サインアウト', onClick: handleSignOut },
+  ];
+
   const [isRegisterTaskModalOpen, setIsRegisterTaskModalOpen] = useState(false);
 
   return (

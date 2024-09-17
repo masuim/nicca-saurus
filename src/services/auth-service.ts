@@ -1,5 +1,5 @@
 import { SignInFormData, SignUpFormData } from '@/schemas/auth-schemas';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 export const signInUser = async (data: SignInFormData) => {
   return signIn('credentials', {
@@ -26,4 +26,8 @@ export const signUpUser = async (data: SignUpFormData) => {
   }
 
   return signInUser(data);
+};
+
+export const signOutUser = async () => {
+  await signOut({ redirect: false });
 };
