@@ -3,10 +3,20 @@
 import { Header } from '@/components/layout/header';
 import { MainContents } from '@/components/main-contents';
 import { SideMenu } from '@/components/side-menu/side-menu';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [isRegisterTaskModalOpen, setIsRegisterTaskModalOpen] = useState(false);
+  const { status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/auth');
+    }
+  }, [status, router]);
 
   return (
     <div className="flex min-h-screen flex-col">
