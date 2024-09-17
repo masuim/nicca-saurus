@@ -19,14 +19,14 @@ type AuthFormProps<T extends FormValues> = {
   onSwitch: () => void;
 };
 
-export function AuthForm<T extends FormValues>({
+export const AuthForm = <T extends FormValues>({
   form,
   onSubmit,
   fields,
   submitText,
   switchText,
   onSwitch,
-}: AuthFormProps<T>) {
+}: AuthFormProps<T>) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -70,4 +70,4 @@ export function AuthForm<T extends FormValues>({
       </form>
     </FormProvider>
   );
-}
+};

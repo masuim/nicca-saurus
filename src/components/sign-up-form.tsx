@@ -1,69 +1,30 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'next-auth/react';
+import { useSignUpForm } from '@/hooks/use-auth-form';
+import { SignUpFormData } from '@/schemas/auth-schemas';
+import { signUpUser } from '@/services/auth-service';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { AuthForm } from './common/auth-form';
 
-const formSchema = z
-  .object({
-    name: z.string().min(1, '名前は必須です'),
-    email: z.string().email('無効なメールアドレスです'),
-    password: z.string().min(6, 'パスワードは6文字以上である必要があります'),
-    confirmPassword: z.string().min(1, 'パスワード（確認）は必須です'),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: 'パスワードが一致しません',
-    path: ['confirmPassword'],
-  });
+type Props = {
+  setIsSignUp: (isSignUp: boolean) => void;
+};
 
-export const SignUpForm = ({
-  setIsSignUp,
-}: {
-  setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const SignUpForm = ({ setIsSignUp }: Props) => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-  });
+  const form = useSignUpForm();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: SignUpFormData) => {
     try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        }),
-      });
+      const result = await signUpUser(values);
 
-      if (response.ok) {
-        const result = await signIn('credentials', {
-          redirect: false,
-          email: values.email,
-          password: values.password,
-        });
-
-        if (result?.error) {
-          form.setError('root', { message: result.error });
-        } else {
-          router.push('/');
-        }
+      if (result?.error) {
+        form.setError('root', { message: result.error });
       } else {
-        const error = await response.json();
-        form.setError('root', { message: error.message });
+        router.push('/');
       }
     } catch (err) {
       form.setError('root', {
-        message: 'サインアップ中に予期せぬエラーが発生しました',
+        message:
+          err instanceof Error ? err.message : 'サインアップ中に予期せぬエラーが発生しました',
       });
     }
   };

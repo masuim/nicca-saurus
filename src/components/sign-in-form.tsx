@@ -1,36 +1,20 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'next-auth/react';
+import { useSignInForm } from '@/hooks/use-auth-form';
+import { SignInFormData } from '@/schemas/auth-schemas';
+import { signInUser } from '@/services/auth-service';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { AuthForm } from './common/auth-form';
 
-const formSchema = z.object({
-  email: z.string().email('無効なメールアドレスです'),
-  password: z.string().min(1, 'パスワードは必須です'),
-});
+type Props = {
+  setIsSignUp: (isSignUp: boolean) => void;
+};
 
-export const SignInForm = ({
-  setIsSignUp,
-}: {
-  setIsSignUp: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const SignInForm = ({ setIsSignUp }: Props) => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
+  const form = useSignInForm();
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: SignInFormData) => {
     try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email: values.email,
-        password: values.password,
-      });
+      const result = await signInUser(values);
 
       if (result?.error) {
         form.setError('root', { message: result.error });

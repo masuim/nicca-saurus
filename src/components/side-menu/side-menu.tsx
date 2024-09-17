@@ -27,7 +27,7 @@ const menuItems: MenuItem[] = [
   { label: 'サインアウト', onClick: () => handleSignOut() },
 ];
 
-export function SideMenu() {
+export const SideMenu = () => {
   const [isRegisterTaskModalOpen, setIsRegisterTaskModalOpen] = useState(false);
 
   return (
@@ -57,4 +57,4 @@ export function SideMenu() {
       )}
     </div>
   );
-}
+};

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import logo from '@/app/images/logos/bg-removed-logo.png';
 
-export function Header() {
+export const Header = () => {
   const { data: session } = useSession();
 
   const handleSignOut = async () => {
@@ -32,4 +32,4 @@ export function Header() {
       ) : null}
     </header>
   );
-}
+};
