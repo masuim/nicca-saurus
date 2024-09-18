@@ -53,7 +53,7 @@ export const registerNicca = async (nicca: Nicca) => {
   }
 };
 
-export function RegisterNiccaModal({ isOpen, onClose }: Props) {
+export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
   const form = useForm<z.infer<typeof NiccaSchema>>({
     resolver: zodResolver(NiccaSchema),
     defaultValues: {
@@ -70,7 +70,7 @@ export function RegisterNiccaModal({ isOpen, onClose }: Props) {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof NiccaSchema>) {
+  const onSubmit = async (values: z.infer<typeof NiccaSchema>) => {
     try {
       const nicca = {
         title: values.title,
@@ -94,7 +94,7 @@ export function RegisterNiccaModal({ isOpen, onClose }: Props) {
     } catch (error) {
       console.error('Error registering nicca:', error);
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -127,4 +127,4 @@ export function RegisterNiccaModal({ isOpen, onClose }: Props) {
       </DialogContent>
     </Dialog>
   );
-}
+};
