@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/ui/modal';
 import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -57,22 +56,14 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
     },
   });
 
-  const [week, setWeek] = useState({
-    mon: false,
-    tue: false,
-    wed: false,
-    thu: false,
-    fri: false,
-    sat: false,
-    sun: false,
-  });
-
-  const handleDayChange = (day: keyof typeof week) => {
-    setWeek((prev) => ({ ...prev, [day]: !prev[day] }));
+  const handleDayChange = (day: keyof z.infer<typeof NiccaSchema>['week']) => {
+    const currentValue = form.getValues(`week.${day}`);
+    form.setValue(`week.${day}`, !currentValue);
   };
 
   const onSubmit = async (values: z.infer<typeof NiccaSchema>) => {
     try {
+      console.log('values', values);
       const nicca = {
         title: values.title,
         week: values.week,
@@ -100,24 +91,29 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
           className="mb-4 w-full rounded-md border-2 border-primary/60 p-2 focus:outline-none focus:ring-2"
         />
         <div className="mt-4 flex justify-between">
-          {dayMap.map((day, index) => (
-            <label
-              key={index}
-              className={`flex items-center justify-center rounded-full ${
-                week[day as keyof typeof week]
-                  ? 'bg-primary text-white'
-                  : 'border-2 border-primary/60 bg-white text-primary'
-              } mx-1 size-8 text-xs`}
-            >
-              <input
-                type="checkbox"
-                checked={week[day as keyof typeof week]}
-                onChange={() => handleDayChange(day as keyof typeof week)}
-                className="hidden"
-              />
-              <span>{day}</span>
-            </label>
-          ))}
+          {dayMap.map((day, index) => {
+            const dayKey = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][
+              index
+            ] as keyof z.infer<typeof NiccaSchema>['week'];
+            return (
+              <label
+                key={index}
+                className={`flex items-center justify-center rounded-full ${
+                  form.watch(`week.${dayKey}`)
+                    ? 'bg-primary text-white'
+                    : 'border-2 border-primary/60 bg-white text-primary'
+                } mx-1 size-8 text-xs`}
+              >
+                <input
+                  type="checkbox"
+                  {...form.register(`week.${dayKey}`)}
+                  onChange={() => handleDayChange(dayKey)}
+                  className="hidden"
+                />
+                <span>{day}</span>
+              </label>
+            );
+          })}
         </div>
         <div className="mt-4 flex justify-end space-x-2">
           <Button variant="outline" onClick={onClose} className="border-2 border-primary/60">
