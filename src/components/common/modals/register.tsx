@@ -31,7 +31,7 @@ const registerNicca = async (nicca: Nicca) => {
   return response.json();
 };
 
-export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
+export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
   const form = useForm<z.infer<typeof NiccaSchema>>({
     resolver: zodResolver(NiccaSchema),
     defaultValues: {
@@ -48,7 +48,7 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
     },
   });
 
-  const handleDayChange = (day: keyof z.infer<typeof NiccaSchema>['week']) => {
+  const toggleDay = (day: keyof z.infer<typeof NiccaSchema>['week']) => {
     const currentValue = form.getValues(`week.${day}`);
     form.setValue(`week.${day}`, !currentValue);
   };
@@ -94,7 +94,7 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
                 <input
                   type="checkbox"
                   {...form.register(`week.${dayKey}`)}
-                  onChange={() => handleDayChange(dayKey)}
+                  onChange={() => toggleDay(dayKey)}
                   className="hidden"
                 />
                 <span>{day}</span>
