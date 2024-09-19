@@ -46,14 +46,20 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
         sun: false,
       },
     },
+    mode: 'onChange',
   });
 
   const toggleDay = (day: keyof z.infer<typeof NiccaSchema>['week']) => {
-    const currentValue = form.getValues(`week.${day}`);
-    form.setValue(`week.${day}`, !currentValue);
+    form.setValue(`week.${day}`, !form.getValues(`week.${day}`), { shouldValidate: true });
+    form.trigger('week');
   };
 
   const onSubmit = async (values: z.infer<typeof NiccaSchema>) => {
+    const isValid = await form.trigger();
+    if (!isValid) {
+      return;
+    }
+
     try {
       const nicca = {
         title: values.title,
@@ -73,10 +79,13 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
     <Modal isOpen={isOpen} onClose={onClose} title="日課登録">
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <input
-          placeholder="日課を入力して下さい"
+          placeholder="日課を入力してください"
           {...form.register('title')}
           className="mb-4 w-full rounded-md border-2 border-primary/60 p-2 focus:outline-none focus:ring-2"
         />
+        {form.formState.errors.title && (
+          <p className="mb-2 text-sm text-error">{form.formState.errors.title.message}</p>
+        )}
         <div className="mt-4 flex justify-between">
           {dayMap.map((day, index) => {
             const dayKey = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][
@@ -102,6 +111,9 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
             );
           })}
         </div>
+        {form.formState.errors.week && (
+          <p className="mt-2 text-sm text-error">{form.formState.errors.week.message}</p>
+        )}
         <div className="mt-4 flex justify-end space-x-2">
           <Button variant="outline" onClick={onClose} className="border-2 border-primary/60">
             戻る

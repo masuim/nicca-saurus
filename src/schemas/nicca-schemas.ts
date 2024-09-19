@@ -7,15 +7,19 @@ export const SaurusTypeSchema = z.enum([
   'tyrannosaurus',
 ]);
 
-export const WeekSchema = z.object({
-  sun: z.boolean(),
-  mon: z.boolean(),
-  tue: z.boolean(),
-  wed: z.boolean(),
-  thu: z.boolean(),
-  fri: z.boolean(),
-  sat: z.boolean(),
-});
+export const WeekSchema = z
+  .object({
+    sun: z.boolean(),
+    mon: z.boolean(),
+    tue: z.boolean(),
+    wed: z.boolean(),
+    thu: z.boolean(),
+    fri: z.boolean(),
+    sat: z.boolean(),
+  })
+  .refine((data) => Object.values(data).filter(Boolean).length >= 4, {
+    message: '少なくとも4日以上選択してください',
+  });
 
 export const BackendDataSchema = z.object({
   user_id: z.number(),
@@ -35,7 +39,7 @@ export const DashboardDataSchema = BackendDataSchema.omit({
 });
 
 export const NiccaSchema = z.object({
-  title: z.string(),
+  title: z.string().min(1, { message: '日課を入力してください' }),
   week: WeekSchema,
 });
 
