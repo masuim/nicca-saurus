@@ -67,7 +67,7 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
     sun: false,
   });
 
-  const handleDayClick = (day: keyof typeof week) => {
+  const handleDayChange = (day: keyof typeof week) => {
     setWeek((prev) => ({ ...prev, [day]: !prev[day] }));
   };
 
@@ -77,6 +77,7 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
         title: values.title,
         week: values.week,
       };
+      console.log('nicca', nicca);
       await registerNicca(nicca);
       onClose();
       const data = await getDashboardData();
@@ -96,22 +97,26 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
         <input
           placeholder="日課を入力して下さい"
           {...form.register('title')}
-          // className="mb-4 w-full border p-2"
           className="mb-4 w-full rounded-md border-2 border-primary/60 p-2 focus:outline-none focus:ring-2"
         />
         <div className="mt-4 flex justify-between">
           {dayMap.map((day, index) => (
-            <button
+            <label
               key={index}
-              onClick={() => handleDayClick(day as keyof typeof week)}
               className={`flex items-center justify-center rounded-full ${
                 week[day as keyof typeof week]
                   ? 'bg-primary text-white'
                   : 'border-2 border-primary/60 bg-white text-primary'
               } mx-1 size-8 text-xs`}
             >
-              {day}
-            </button>
+              <input
+                type="checkbox"
+                checked={week[day as keyof typeof week]}
+                onChange={() => handleDayChange(day as keyof typeof week)}
+                className="hidden"
+              />
+              <span>{day}</span>
+            </label>
           ))}
         </div>
         <div className="mt-4 flex justify-end space-x-2">
