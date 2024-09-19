@@ -1,7 +1,8 @@
 import { prisma } from '@/lib/prisma';
 import { NiccaSchema, SaurusTypeSchema } from '@/schemas/nicca-schemas';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
+import { authOptions } from '../auth/[...nextauth]/route';
 
 export const GET = async () => {
   try {
@@ -18,11 +19,10 @@ export const GET = async () => {
 };
 
 export const POST = async (request: Request) => {
-  console.log('request', request);
   try {
     const nicca = await request.json();
     const parsedNicca = NiccaSchema.parse(nicca);
-    const session = await getSession();
+    const session = await getServerSession(authOptions);
     const userId = session?.user?.id;
 
     const randomSaurusType =
@@ -46,7 +46,6 @@ export const POST = async (request: Request) => {
         user: { connect: { id: userId } },
       },
     });
-    console.log('newNicca', newNicca);
     return NextResponse.json(newNicca, { status: 201 });
   } catch (error) {
     console.error('Error registering nicca:', error);

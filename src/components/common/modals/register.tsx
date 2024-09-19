@@ -13,14 +13,6 @@ type Props = {
 
 const dayMap = ['月', '火', '水', '木', '金', '土', '日'];
 
-const getDashboardData = async () => {
-  const response = await fetch('/api/nicca');
-  if (!response.ok) {
-    throw new Error('ネットワークエラーが発生しました');
-  }
-  return response.json();
-};
-
 const registerNicca = async (nicca: Nicca) => {
   const response = await fetch('/api/nicca', {
     method: 'POST',
@@ -63,18 +55,13 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
 
   const onSubmit = async (values: z.infer<typeof NiccaSchema>) => {
     try {
-      console.log('values', values);
       const nicca = {
         title: values.title,
         week: values.week,
       };
-      console.log('nicca', nicca);
       await registerNicca(nicca);
       onClose();
-      const data = await getDashboardData();
-      // setDashboardData(data);
-      // TODO: ダッシュボードに反映
-      console.log('data', data);
+      form.reset();
     } catch (error) {
       console.error('Error registering nicca:', error);
     }
