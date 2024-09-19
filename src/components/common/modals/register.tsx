@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Modal } from '@/components/ui/modal';
 import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -90,38 +91,35 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-primary">
-      <div className="w-96 rounded-lg bg-white p-6">
-        <h2 className="mb-4 text-xl font-bold">日課登録</h2>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <input
-            placeholder="日課を入力して下さい。"
-            {...form.register('title')}
-            className="w-full border p-2"
-          />
-          <div className="mt-4 flex space-x-2">
-            {dayMap.map((day, index) => (
-              <button
-                key={index}
-                onClick={() => handleDayClick(day as keyof typeof week)}
-                className={`flex size-10 items-center justify-center rounded-full ${
-                  week[day as keyof typeof week] ? 'bg-primary text-white' : 'bg-white text-primary'
-                }`}
-              >
-                {day}
-              </button>
-            ))}
-          </div>
-          <div className="mt-4 flex justify-end space-x-2">
-            <Button variant="outline" onClick={onClose}>
-              戻る
-            </Button>
-            <Button type="submit" className="text-white">
-              登録
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Modal isOpen={isOpen} onClose={onClose} title="日課登録">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <input
+          placeholder="日課を入力して下さい"
+          {...form.register('title')}
+          className="mb-4 w-full border p-2"
+        />
+        <div className="mt-4 flex justify-between">
+          {dayMap.map((day, index) => (
+            <button
+              key={index}
+              onClick={() => handleDayClick(day as keyof typeof week)}
+              className={`flex items-center justify-center rounded-full ${
+                week[day as keyof typeof week] ? 'bg-primary text-white' : 'bg-white text-primary'
+              } mx-1 size-8 text-xs`}
+            >
+              {day}
+            </button>
+          ))}
+        </div>
+        <div className="mt-4 flex justify-end space-x-2">
+          <Button variant="outline" onClick={onClose}>
+            戻る
+          </Button>
+          <Button type="submit" className="text-white">
+            登録
+          </Button>
+        </div>
+      </form>
+    </Modal>
   );
 };
