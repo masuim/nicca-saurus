@@ -10,7 +10,7 @@ npm run dev
 以下のコマンドを実行してPrisma Studioを起動します：
 
 ```bash
-studio
+npx prisma studio
 ```
 
 これにより、ブラウザでhttp://localhost:5555が開き、データベースの内容を確認・編集できます。

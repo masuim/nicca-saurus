@@ -1,4 +1,5 @@
 import * as LabelPrimitive from '@radix-ui/react-label';
+// TODO: @radix-ui/react-slot 使ったままにする？モーダルに揃えたい。モーダルではなくてダイアログに名前統一した方が良いよね。
 import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
 import {
@@ -119,45 +120,43 @@ const FormControl = React.forwardRef<
 });
 FormControl.displayName = 'FormControl';
 
-const FormDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => {
-  const { formDescriptionId } = useFormField();
+const FormDescription = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => {
+    const { formDescriptionId } = useFormField();
 
-  return (
-    <p
-      ref={ref}
-      id={formDescriptionId}
-      className={cn('text-muted-foreground text-sm', className)}
-      {...props}
-    />
-  );
-});
+    return (
+      <div
+        ref={ref}
+        id={formDescriptionId}
+        className={cn('text-muted-foreground text-sm', className)}
+        {...props}
+      />
+    );
+  },
+);
 FormDescription.displayName = 'FormDescription';
 
-const FormMessage = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, children, ...props }, ref) => {
-  const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
+const FormMessage = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, children, ...props }, ref) => {
+    const { error, formMessageId } = useFormField();
+    const body = error ? String(error?.message) : children;
 
-  if (!body) {
-    return null;
-  }
+    if (!body) {
+      return null;
+    }
 
-  return (
-    <p
-      ref={ref}
-      id={formMessageId}
-      className={cn('text-sm font-medium text-error', className)}
-      {...props}
-    >
-      {body}
-    </p>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        id={formMessageId}
+        className={cn('text-xs font-medium text-error', className)}
+        {...props}
+      >
+        {body}
+      </div>
+    );
+  },
+);
 FormMessage.displayName = 'FormMessage';
 
 export {

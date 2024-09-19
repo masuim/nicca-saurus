@@ -19,14 +19,14 @@ type AuthFormProps<T extends FormValues> = {
   onSwitch: () => void;
 };
 
-export function AuthForm<T extends FormValues>({
+export const AuthForm = <T extends FormValues>({
   form,
   onSubmit,
   fields,
   submitText,
   switchText,
   onSwitch,
-}: AuthFormProps<T>) {
+}: AuthFormProps<T>) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -47,27 +47,27 @@ export function AuthForm<T extends FormValues>({
           />
         ))}
         {form.formState.errors.root && (
-          <p className="text-red-500">{form.formState.errors.root.message}</p>
+          <div className="text-red-500">{form.formState.errors.root.message}</div>
         )}
         <div className="flex justify-center pt-6">
           <Button type="submit" variant="main" disabled={form.formState.isSubmitting} size="lg">
             {form.formState.isSubmitting ? `${submitText}中...` : submitText}
           </Button>
         </div>
-        <p className="text-muted-foreground mt-4 text-center text-[12px]">
+        <div className="text-muted-foreground mt-4 text-center text-[12px]">
           <span className="block">{switchText}</span>
           <span>
             こちらから
             <button
-              className="font-inherit cursor-pointer border-none bg-transparent p-0 text-blue-500 hover:underline"
+              className="mx-0.25 cursor-pointer rounded-md border-none p-1 font-extrabold text-blue-600"
               onClick={onSwitch}
             >
-              {submitText === 'Login' ? 'Sign Up' : 'Login'}
+              {submitText === 'サインアップ' ? ' Sign In ' : ' Sign Up '}
             </button>
             してください
           </span>
-        </p>
+        </div>
       </form>
     </FormProvider>
   );
-}
+};

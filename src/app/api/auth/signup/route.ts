@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 import { prisma } from '@/lib/prisma';
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   try {
     const { name, email, password } = await req.json();
 
@@ -50,4 +50,4 @@ export async function POST(req: Request) {
       { status: 500 },
     );
   }
-}
+};

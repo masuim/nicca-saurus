@@ -1,0 +1,48 @@
+import { useFlashMessage } from '@/contexts/flash-message-context';
+import { SignInFormData, SignUpFormData } from '@/schemas/auth-schemas';
+import { signIn, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+
+export const signInUser = async (data: SignInFormData) => {
+  return signIn('credentials', {
+    redirect: false,
+    email: data.email,
+    password: data.password,
+  });
+};
+
+export const signUpUser = async (data: SignUpFormData) => {
+  const response = await fetch('/api/auth/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+
+  return signInUser(data);
+};
+
+export const useSignOut = () => {
+  const router = useRouter();
+  const { showFlashMessage } = useFlashMessage();
+
+  const signOutUser = async () => {
+    try {
+      await signOut({ redirect: false });
+      showFlashMessage('サインアウトしました', 'success');
+      router.push('/auth');
+    } catch (error) {
+      showFlashMessage('サインアウト中にエラーが発生しました', 'error');
+    }
+  };
+
+  return signOutUser;
+};

@@ -13,12 +13,12 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         className={cn(
           'bg-card text-card-foreground rounded-lg border-2 border-primary/80 shadow-md',
           variant === 'outlined' && 'border-2 border-primary/80',
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 Card.displayName = 'Card';
 
@@ -27,7 +27,7 @@ interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, ...props }, ref) => {
     return <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />;
-  }
+  },
 );
 CardHeader.displayName = 'CardHeader';
 
@@ -44,7 +44,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
         {...props}
       />
     );
-  }
+  },
 );
 CardTitle.displayName = 'CardTitle';
 
@@ -53,7 +53,7 @@ interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, ...props }, ref) => {
     return <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />;
-  }
+  },
 );
 CardContent.displayName = 'CardContent';
 
