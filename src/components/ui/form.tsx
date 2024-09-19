@@ -1,4 +1,5 @@
 import * as LabelPrimitive from '@radix-ui/react-label';
+// TODO: @radix-ui/react-slot 使ったままにする？モーダルに揃えたい。モーダルではなくてダイアログに名前統一した方が良いよね。
 import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
 import {
