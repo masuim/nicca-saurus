@@ -47,14 +47,14 @@ export const AuthForm = <T extends FormValues>({
           />
         ))}
         {form.formState.errors.root && (
-          <p className="text-red-500">{form.formState.errors.root.message}</p>
+          <div className="text-red-500">{form.formState.errors.root.message}</div>
         )}
         <div className="flex justify-center pt-6">
           <Button type="submit" variant="main" disabled={form.formState.isSubmitting} size="lg">
             {form.formState.isSubmitting ? `${submitText}中...` : submitText}
           </Button>
         </div>
-        <p className="text-muted-foreground mt-4 text-center text-[12px]">
+        <div className="text-muted-foreground mt-4 text-center text-[12px]">
           <span className="block">{switchText}</span>
           <span>
             こちらから
@@ -66,7 +66,7 @@ export const AuthForm = <T extends FormValues>({
             </button>
             してください
           </span>
-        </p>
+        </div>
       </form>
     </FormProvider>
   );

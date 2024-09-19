@@ -22,7 +22,7 @@ export const FlashMessage = () => {
   }[flashMessage.type];
 
   return (
-    <div className="animate-fade-in-down fixed right-4 top-20 z-50">
+    <div className="fixed right-4 top-20 z-50 animate-fade-in-down">
       <Card
         className={cn(
           'max-w-sm border-2 bg-white/80 shadow-lg transition-all duration-300 ease-in-out',
@@ -30,7 +30,7 @@ export const FlashMessage = () => {
         )}
       >
         <CardContent className="flex items-center justify-between p-4">
-          <p className={cn('text-sm font-bold', textColor)}>{flashMessage.message}</p>
+          <div className={cn('text-sm font-bold', textColor)}>{flashMessage.message}</div>
           <button onClick={hideFlashMessage} className={cn('ml-4 hover:text-gray-700', textColor)}>
             ×
           </button>

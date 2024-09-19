@@ -1,13 +1,8 @@
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -70,6 +65,20 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
     },
   });
 
+  const [week, setWeek] = useState({
+    mon: false,
+    tue: false,
+    wed: false,
+    thu: false,
+    fri: false,
+    sat: false,
+    sun: false,
+  });
+
+  const handleDayClick = (day: keyof typeof week) => {
+    setWeek((prev) => ({ ...prev, [day]: !prev[day] }));
+  };
+
   const onSubmit = async (values: z.infer<typeof NiccaSchema>) => {
     try {
       const nicca = {
@@ -98,31 +107,40 @@ export const RegisterNiccaModal = ({ isOpen, onClose }: Props) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent aria-labelledby="dialog-title">
         <DialogHeader>
-          <DialogTitle>タスク登録</DialogTitle>
-          <DialogDescription>
-            <p>何を継続したい？</p>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <input placeholder="タスク名" {...form.register('title')} className="border p-2" />
-              <div className="mt-4 flex space-x-2">
-                {dayMap.map((day, index) => (
-                  <div
-                    key={index}
-                    className="flex size-10 items-center justify-center rounded-full bg-white text-primary"
-                  >
-                    {day}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 flex justify-end space-x-2">
-                <Button variant="outline" onClick={onClose}>
-                  戻る
-                </Button>
-                <Button type="submit">登録</Button>
-              </div>
-            </form>
-          </DialogDescription>
+          <DialogTitle id="dialog-title">日課登録</DialogTitle>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <input
+              placeholder="日課を入力して下さい。"
+              {...form.register('title')}
+              className="border p-2"
+            />
+            <div className="mt-4 flex space-x-2">
+              {dayMap.map((day, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDayClick(day as keyof typeof week)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleDayClick(day as keyof typeof week);
+                  }}
+                  className={`flex size-10 items-center justify-center rounded-full ${
+                    week[day as keyof typeof week]
+                      ? 'bg-primary text-white'
+                      : 'bg-white text-primary'
+                  }`}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 flex justify-end space-x-2">
+              <Button variant="outline" onClick={onClose}>
+                戻る
+              </Button>
+              <Button type="submit">登録</Button>
+            </div>
+          </form>
         </DialogHeader>
       </DialogContent>
     </Dialog>

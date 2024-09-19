@@ -18,6 +18,7 @@ export const GET = async () => {
 };
 
 export const POST = async (request: Request) => {
+  console.log('request', request);
   try {
     const nicca = await request.json();
     const parsedNicca = NiccaSchema.parse(nicca);
@@ -45,6 +46,7 @@ export const POST = async (request: Request) => {
         user: { connect: { id: userId } },
       },
     });
+    console.log('newNicca', newNicca);
     return NextResponse.json(newNicca, { status: 201 });
   } catch (error) {
     console.error('Error registering nicca:', error);

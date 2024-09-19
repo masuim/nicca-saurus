@@ -34,6 +34,7 @@ export const Header = () => {
           width={64}
           height={64}
           className="mt-1 h-full w-auto object-contain"
+          priority
         />
       </Link>
       {session ? (

@@ -26,6 +26,7 @@ export default function AuthPage() {
           width={300}
           height={300}
           className="w-3/4 max-w-xs sm:max-w-sm"
+          priority
         />
       </div>
       <div className="mt-8 flex w-full items-center justify-center p-4 pt-12 lg:mt-0 lg:w-3/5 lg:p-8">
