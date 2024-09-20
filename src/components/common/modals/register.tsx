@@ -14,6 +14,16 @@ type Props = {
 
 const dayMap = ['月', '火', '水', '木', '金', '土', '日'];
 
+const dayKeys: Array<keyof z.infer<typeof NiccaSchema>['week']> = [
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday',
+];
+
 const registerNicca = async (nicca: Nicca): Promise<ApiResult<Nicca>> => {
   const response = await fetch('/api/nicca', {
     method: 'POST',
@@ -90,15 +100,7 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
         )}
         <div className="mt-4 flex justify-between">
           {dayMap.map((day, index) => {
-            const dayKey = [
-              'monday',
-              'tuesday',
-              'wednesday',
-              'thursday',
-              'friday',
-              'saturday',
-              'sunday',
-            ][index] as keyof z.infer<typeof NiccaSchema>['week'];
+            const dayKey = dayKeys[index];
             return (
               <label
                 key={index}

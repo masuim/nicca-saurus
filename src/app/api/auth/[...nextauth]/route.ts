@@ -54,7 +54,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt' as const,
+    strategy: 'jwt',
   },
   pages: {
     signIn: '/auth',
@@ -62,13 +62,21 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }: { token: JWT; user: User }) {
       if (user) {
+        if (typeof user.id !== 'string') {
+          console.error('ユーザーIDが文字列ではありません');
+          throw new Error('無効なユーザーID');
+        }
         token.id = user.id;
       }
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user) {
-        session.user.id = token.id as string;
+        if (typeof token.id !== 'string') {
+          console.error('トークンIDが文字列ではありません');
+          throw new Error('無効なトークンID');
+        }
+        session.user.id = token.id;
       }
       return session;
     },
