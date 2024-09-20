@@ -12,7 +12,7 @@ export const GET = async () => {
         week: true,
       },
     });
-    return NextResponse.json(dashboardData);
+    return NextResponse.json({ success: true, data: dashboardData, status: 200 });
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
     return NextResponse.json({ message: 'データ取得中にエラーが発生しました' }, { status: 500 });
@@ -27,10 +27,11 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
     const userId = session?.user?.id;
 
     if (!userId) {
-      return NextResponse.json(
-        { success: false, error: 'ユーザーが認証されていません' },
-        { status: 401 },
-      );
+      return NextResponse.json({
+        success: false,
+        error: 'ユーザーが認証されていません',
+        status: 401,
+      });
     }
 
     const randomSaurusType =
@@ -69,12 +70,13 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
       },
     };
 
-    return NextResponse.json({ success: true, data: formattedNicca }, { status: 201 });
+    return NextResponse.json({ success: true, data: formattedNicca, status: 201 });
   } catch (error) {
     console.error('Error registering nicca:', error);
-    return NextResponse.json(
-      { success: false, error: '日課登録中にエラーが発生しました' },
-      { status: 500 },
-    );
+    return NextResponse.json({
+      success: false,
+      error: '日課登録中にエラーが発生しました',
+      status: 500,
+    });
   }
 };
