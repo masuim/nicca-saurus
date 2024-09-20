@@ -18,7 +18,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
     try {
       const result = await signUpUser(values);
 
-      if (result?.error) {
+      if (!result.success) {
         form.setError('root', { message: result.error });
         showFlashMessage(result.error, 'error');
       } else {
