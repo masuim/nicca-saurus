@@ -24,11 +24,7 @@ export const signUpUser = async (
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    }),
+    body: JSON.stringify(data),
   });
 
   const result: ApiResult<{ id: string; name: string; email: string }> = await response.json();
@@ -36,6 +32,12 @@ export const signUpUser = async (
   if (!result.success) {
     throw new Error(result.error);
   }
+
+  await signIn('credentials', {
+    redirect: false,
+    email: data.email,
+    password: data.password,
+  });
 
   return result;
 };
