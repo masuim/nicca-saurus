@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/ui/modal';
 import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
+import { ApiResult } from '@/types/api-types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -13,7 +14,7 @@ type Props = {
 
 const dayMap = ['月', '火', '水', '木', '金', '土', '日'];
 
-const registerNicca = async (nicca: Nicca) => {
+const registerNicca = async (nicca: Nicca): Promise<ApiResult<Nicca>> => {
   const response = await fetch('/api/nicca', {
     method: 'POST',
     headers: {
@@ -23,12 +24,13 @@ const registerNicca = async (nicca: Nicca) => {
     body: JSON.stringify(nicca),
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message);
+  const data: ApiResult<Nicca> = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.error);
   }
 
-  return response.json();
+  return data;
 };
 
 export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
