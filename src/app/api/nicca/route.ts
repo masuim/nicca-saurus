@@ -5,17 +5,35 @@ import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 
-export const GET = async () => {
+export const GET = async (): Promise<NextResponse<ApiResult<Nicca[]>>> => {
   try {
     const dashboardData = await prisma.nicca.findMany({
       include: {
         week: true,
       },
     });
-    return NextResponse.json({ success: true, data: dashboardData, status: 200 });
+
+    const formattedData = dashboardData.map((nicca) => ({
+      title: nicca.title,
+      week: {
+        sunday: !!nicca.week?.sunday,
+        monday: !!nicca.week?.monday,
+        tuesday: !!nicca.week?.tuesday,
+        wednesday: !!nicca.week?.wednesday,
+        thursday: !!nicca.week?.thursday,
+        friday: !!nicca.week?.friday,
+        saturday: !!nicca.week?.saturday,
+      },
+    }));
+
+    return NextResponse.json({ success: true, data: formattedData, status: 200 });
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
-    return NextResponse.json({ message: 'データ取得中にエラーが発生しました' }, { status: 500 });
+    return NextResponse.json({
+      success: false,
+      error: 'データ取得中にエラーが発生しました',
+      status: 500,
+    });
   }
 };
 
@@ -42,13 +60,13 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
         title: parsedNicca.title,
         week: {
           create: {
-            monday: parsedNicca.week.mon,
-            tuesday: parsedNicca.week.tue,
-            wednesday: parsedNicca.week.wed,
-            thursday: parsedNicca.week.thu,
-            friday: parsedNicca.week.fri,
-            saturday: parsedNicca.week.sat,
-            sunday: parsedNicca.week.sun,
+            monday: parsedNicca.week.monday,
+            tuesday: parsedNicca.week.tuesday,
+            wednesday: parsedNicca.week.wednesday,
+            thursday: parsedNicca.week.thursday,
+            friday: parsedNicca.week.friday,
+            saturday: parsedNicca.week.saturday,
+            sunday: parsedNicca.week.sunday,
           },
         },
         saurustype: randomSaurusType,
@@ -60,13 +78,13 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
     const formattedNicca = {
       title: newNicca.title,
       week: {
-        sun: !!newNicca.week?.sunday,
-        mon: !!newNicca.week?.monday,
-        tue: !!newNicca.week?.tuesday,
-        wed: !!newNicca.week?.wednesday,
-        thu: !!newNicca.week?.thursday,
-        fri: !!newNicca.week?.friday,
-        sat: !!newNicca.week?.saturday,
+        sunday: !!newNicca.week?.sunday,
+        monday: !!newNicca.week?.monday,
+        tuesday: !!newNicca.week?.tuesday,
+        wednesday: !!newNicca.week?.wednesday,
+        thursday: !!newNicca.week?.thursday,
+        friday: !!newNicca.week?.friday,
+        saturday: !!newNicca.week?.saturday,
       },
     };
 

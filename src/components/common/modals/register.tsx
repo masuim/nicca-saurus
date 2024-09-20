@@ -39,13 +39,13 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
     defaultValues: {
       title: '',
       week: {
-        mon: false,
-        tue: false,
-        wed: false,
-        thu: false,
-        fri: false,
-        sat: false,
-        sun: false,
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false,
       },
     },
     mode: 'onChange',
@@ -90,9 +90,15 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
         )}
         <div className="mt-4 flex justify-between">
           {dayMap.map((day, index) => {
-            const dayKey = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][
-              index
-            ] as keyof z.infer<typeof NiccaSchema>['week'];
+            const dayKey = [
+              'monday',
+              'tuesday',
+              'wednesday',
+              'thursday',
+              'friday',
+              'saturday',
+              'sunday',
+            ][index] as keyof z.infer<typeof NiccaSchema>['week'];
             return (
               <label
                 key={index}

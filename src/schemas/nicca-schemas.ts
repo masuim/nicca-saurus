@@ -9,13 +9,13 @@ export const SaurusTypeSchema = z.enum([
 
 export const WeekSchema = z
   .object({
-    sun: z.boolean(),
-    mon: z.boolean(),
-    tue: z.boolean(),
-    wed: z.boolean(),
-    thu: z.boolean(),
-    fri: z.boolean(),
-    sat: z.boolean(),
+    sunday: z.boolean(),
+    monday: z.boolean(),
+    tuesday: z.boolean(),
+    wednesday: z.boolean(),
+    thursday: z.boolean(),
+    friday: z.boolean(),
+    saturday: z.boolean(),
   })
   .refine((data) => Object.values(data).filter(Boolean).length >= 4, {
     message: '少なくとも4日以上選択してください',
