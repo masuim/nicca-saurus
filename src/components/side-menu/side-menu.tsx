@@ -32,9 +32,10 @@ export const SideMenu = ({ openRegisterModal }: Props) => {
   const handleOpenRegisterModal = () => {
     if (hasActiveNicca) {
       alert('途中の日課があります');
-    } else {
-      openRegisterModal();
+      return;
     }
+
+    openRegisterModal();
   };
 
   const menuItems: MenuItem[] = [
