@@ -7,8 +7,7 @@
     "plugin:tailwindcss/recommended",
     "plugin:import/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "plugins": ["@typescript-eslint", "react", "react-hooks", "tailwindcss", "import", "prettier"],
   "parser": "@typescript-eslint/parser",
@@ -23,7 +22,7 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     "tailwindcss/no-custom-classname": "off",
-    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
+    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/label-has-associated-control": [
       "error",
