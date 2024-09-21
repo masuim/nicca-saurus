@@ -1,6 +1,5 @@
 'use client';
 
-import { NiccaRegisterModal } from '@/components/common/modals/register';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import appLogo from '@/app/images/app-name/app-name-2column.png';
@@ -18,9 +17,28 @@ type MenuItem = {
 
 export const SideMenu = ({ openRegisterModal }: Props) => {
   const signOutUser = useSignOut();
+  const [hasActiveNicca, setHasActiveNicca] = useState(false);
+
+  useEffect(() => {
+    const checkActiveNicca = async () => {
+      const response = await fetch('/api/nicca/active');
+      const data = await response.json();
+      setHasActiveNicca(data.hasActiveNicca);
+    };
+
+    checkActiveNicca();
+  }, []);
+
+  const handleOpenRegisterModal = () => {
+    if (hasActiveNicca) {
+      alert('途中の日課があります');
+    } else {
+      openRegisterModal();
+    }
+  };
 
   const menuItems: MenuItem[] = [
-    { label: '日課登録', onClick: openRegisterModal },
+    { label: '日課登録', onClick: handleOpenRegisterModal },
     //TODO: 日課詳細いらなくない？日課一覧から詳細を確認したり、編集した方が良いと思う。
     // { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
     { label: '日課削除', onClick: () => alert('日課削除クリック！') },
