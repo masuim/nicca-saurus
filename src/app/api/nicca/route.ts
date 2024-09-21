@@ -59,17 +59,11 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
       data: {
         title: parsedNicca.title,
         week: {
-          create: {
-            monday: parsedNicca.week.monday,
-            tuesday: parsedNicca.week.tuesday,
-            wednesday: parsedNicca.week.wednesday,
-            thursday: parsedNicca.week.thursday,
-            friday: parsedNicca.week.friday,
-            saturday: parsedNicca.week.saturday,
-            sunday: parsedNicca.week.sunday,
-          },
+          create: parsedNicca.week,
         },
-        saurustype: randomSaurusType,
+        saurusType: randomSaurusType,
+        status: 'active',
+        completedSets: 0,
         user: { connect: { id: userId } },
       },
       include: { week: true },
@@ -94,6 +88,62 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
     return NextResponse.json({
       success: false,
       error: '日課登録中にエラーが発生しました',
+      status: 500,
+    });
+  }
+};
+
+export const DELETE = async (
+  request: Request,
+  { params }: { params: { id: string } },
+): Promise<NextResponse<ApiResult<{ id: string }>>> => {
+  try {
+    const session = await getServerSession(authOptions);
+    const userId = session?.user?.id;
+
+    if (!userId) {
+      return NextResponse.json({
+        success: false,
+        error: 'ユーザーが認証されていません',
+        status: 401,
+      });
+    }
+
+    const niccaId = params.id;
+
+    const nicca = await prisma.nicca.findUnique({
+      where: { id: niccaId },
+      include: { week: true, achievements: true },
+    });
+
+    if (!nicca) {
+      return NextResponse.json({
+        success: false,
+        error: '日課が見つかりません',
+        status: 404,
+      });
+    }
+
+    if (nicca.userId !== userId) {
+      return NextResponse.json({
+        success: false,
+        error: 'この日課を削除する権限がありません',
+        status: 403,
+      });
+    }
+
+    await prisma.$transaction([
+      prisma.achievementDate.deleteMany({ where: { niccaId: niccaId } }),
+      prisma.week.delete({ where: { niccaId: niccaId } }),
+      prisma.nicca.delete({ where: { id: niccaId } }),
+    ]);
+
+    return NextResponse.json({ success: true, data: { id: niccaId }, status: 200 });
+  } catch (error) {
+    console.error('Error deleting nicca:', error);
+    return NextResponse.json({
+      success: false,
+      error: '日課削除中にエラーが発生しました',
       status: 500,
     });
   }

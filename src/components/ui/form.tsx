@@ -1,6 +1,3 @@
-import * as LabelPrimitive from '@radix-ui/react-label';
-// TODO: @radix-ui/react-slot 使ったままにする？モーダルに揃えたい。モーダルではなくてダイアログに名前統一した方が良いよね。
-import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
 import {
   Controller,
@@ -10,8 +7,8 @@ import {
   type ControllerProps as RHFControllerProps,
 } from 'react-hook-form';
 
-import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { FormLabel } from '@mui/material';
 
 const Form = useFormContext;
 
@@ -84,31 +81,14 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 );
 FormItem.displayName = 'FormItem';
 
-const FormLabel = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & { className?: string }
->(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
-
-  return (
-    <Label
-      ref={ref}
-      className={cn(error && 'text-destructive', className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  );
-});
-FormLabel.displayName = 'FormLabel';
-
 const FormControl = React.forwardRef<
-  React.ElementRef<typeof Slot>,
-  React.ComponentPropsWithoutRef<typeof Slot> & { className?: string }
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { className?: string }
 >(({ className, ...props }, ref) => {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
-    <Slot
+    <div
       ref={ref}
       id={formItemId}
       aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
