@@ -1,13 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import appLogo from '@/app/images/app-name/app-name-2column.png';
 import { useSignOut } from '@/services/auth-service';
 import { MenuButton } from './menu-button';
 
 type Props = {
   openRegisterModal: () => void;
+  hasActiveNicca: boolean;
 };
 
 type MenuItem = {
@@ -15,26 +15,10 @@ type MenuItem = {
   onClick?: () => void;
 };
 
-export const SideMenu = ({ openRegisterModal }: Props) => {
+export const SideMenu = ({ openRegisterModal, hasActiveNicca }: Props) => {
   const signOutUser = useSignOut();
-  const [hasActiveNicca, setHasActiveNicca] = useState(false);
-
-  useEffect(() => {
-    const checkActiveNicca = async () => {
-      const response = await fetch('/api/nicca/active');
-      const data = await response.json();
-      setHasActiveNicca(data.hasActiveNicca);
-    };
-
-    checkActiveNicca();
-  }, []);
 
   const handleOpenRegisterModal = () => {
-    if (hasActiveNicca) {
-      alert('途中の日課があります');
-      return;
-    }
-
     openRegisterModal();
   };
 

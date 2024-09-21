@@ -11,6 +11,7 @@ export default function Home() {
   const { status } = useSession();
   const router = useRouter();
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [hasActiveNicca, setHasActiveNicca] = useState(false);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -18,7 +19,27 @@ export default function Home() {
     }
   }, [status, router]);
 
-  const openRegisterModal = () => setIsRegisterModalOpen(true);
+  useEffect(() => {
+    const checkActiveNicca = async () => {
+      const response = await fetch('/api/nicca/active');
+      const data = await response.json();
+      setHasActiveNicca(data.hasActiveNicca);
+      if (!data.hasActiveNicca) {
+        setIsRegisterModalOpen(true);
+      }
+    };
+
+    checkActiveNicca();
+  }, []);
+
+  const openRegisterModal = () => {
+    if (hasActiveNicca) {
+      alert('途中の日課があります');
+    } else {
+      setIsRegisterModalOpen(true);
+    }
+  };
+  const closeRegisterModal = () => setIsRegisterModalOpen(false);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -26,10 +47,13 @@ export default function Home() {
         <Header />
       </div>
       <div className="flex flex-1 flex-col lg:flex-row">
-        <SideMenu openRegisterModal={openRegisterModal} />
+        <SideMenu openRegisterModal={openRegisterModal} hasActiveNicca={hasActiveNicca} />
         <MainContents
           isRegisterModalOpen={isRegisterModalOpen}
           setIsRegisterModalOpen={setIsRegisterModalOpen}
+          closeRegisterModal={closeRegisterModal}
+          hasActiveNicca={hasActiveNicca}
+          setHasActiveNicca={setHasActiveNicca}
         >
           <div>main-contents</div>
         </MainContents>

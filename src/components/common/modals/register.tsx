@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/ui/modal';
+import { useFlashMessage } from '@/contexts/flash-message-context';
 import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
 import { ApiResult } from '@/types/api-types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +10,8 @@ import { z } from 'zod';
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: () => void;
+  //TODO: 前のバージョンで使った
   // setDashboardData: (data: DashboardData | null) => void;
 };
 
@@ -43,7 +46,7 @@ const registerNicca = async (nicca: Nicca): Promise<ApiResult<Nicca>> => {
   return data;
 };
 
-export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
+export const NiccaRegisterModal = ({ isOpen, onClose, onSuccess }: Props) => {
   const form = useForm<z.infer<typeof NiccaSchema>>({
     resolver: zodResolver(NiccaSchema),
     defaultValues: {
@@ -61,6 +64,8 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
     mode: 'onChange',
   });
 
+  const { showFlashMessage } = useFlashMessage();
+
   const toggleDay = (day: keyof z.infer<typeof NiccaSchema>['week']) => {
     form.setValue(`week.${day}`, !form.getValues(`week.${day}`), { shouldValidate: true });
     form.trigger('week');
@@ -77,11 +82,18 @@ export const NiccaRegisterModal = ({ isOpen, onClose }: Props) => {
         title: values.title,
         week: values.week,
       };
-      await registerNicca(nicca);
-      onClose();
-      form.reset();
+      const result = await registerNicca(nicca);
+
+      if (result.success) {
+        showFlashMessage('日課が正常に登録されました', 'success');
+        onClose();
+        onSuccess(); // この行を追加
+        form.reset();
+      } else {
+        showFlashMessage(result.error || '日課の登録に失敗しました', 'error');
+      }
     } catch (error) {
-      console.error('Error registering nicca:', error);
+      showFlashMessage('日課の登録中にエラーが発生しました', 'error');
     }
   };
 
