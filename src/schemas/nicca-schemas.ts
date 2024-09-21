@@ -21,17 +21,19 @@ export const WeekSchema = z
     message: '少なくとも4日以上選択してください',
   });
 
+// TODO: 未使用
 export const BackendDataSchema = z.object({
-  user_id: z.number(),
+  userId: z.number(),
+  // TODO: 使うことになったらパスカルケースに揃える
   achievement_total: z.number().nullable().optional(),
   achievement_dates: z.array(z.string()).nullable().optional(),
-  nicca_id: z.number().nullable().optional(),
+  niccaId: z.number().nullable().optional(),
   title: z.string().nullable().optional(),
   frequency: z.number().nullable().optional(),
-  saurus_type: SaurusTypeSchema.nullable().optional(),
+  saurusType: SaurusTypeSchema.nullable().optional(),
   quotient: z.number().nullable().optional(),
 });
-
+// TODO: 未使用
 export const DashboardDataSchema = BackendDataSchema.omit({
   frequency: true,
 }).extend({
