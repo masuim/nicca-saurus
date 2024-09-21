@@ -21,12 +21,13 @@ model User {
 
 model Nicca {
   id           String            @id @default(uuid())
-  user_id      String
+  userId       String
   title        String
-  saurustype   String
+  saurusType   String
+  isActive     Boolean           @default(true)
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
-  user         User              @relation(fields: [user_id], references: [id])
+  user         User              @relation(fields: [userId], references: [id])
   week         Week?
   achievements AchievementDate[]
 
@@ -35,7 +36,7 @@ model Nicca {
 
 model Week {
   id        String  @id @default(uuid())
-  nicca_id  String  @unique
+  niccaId   String  @unique
   monday    Boolean @default(false)
   tuesday   Boolean @default(false)
   wednesday Boolean @default(false)
@@ -43,19 +44,19 @@ model Week {
   friday    Boolean @default(false)
   saturday  Boolean @default(false)
   sunday    Boolean @default(false)
-  nicca     Nicca   @relation(fields: [nicca_id], references: [id])
+  nicca     Nicca   @relation(fields: [niccaId], references: [id])
 
   @@map("weeks")
 }
 
 model AchievementDate {
-  id            String   @id @default(uuid())
-  nicca_id      String
-  achieved_date DateTime
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  nicca         Nicca    @relation(fields: [nicca_id], references: [id])
+  id           String   @id @default(uuid())
+  niccaId      String
+  achievedDate DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  nicca        Nicca    @relation(fields: [niccaId], references: [id])
 
-  @@unique([nicca_id, achieved_date])
+  @@unique([niccaId, achievedDate])
   @@map("achievement_dates")
 }

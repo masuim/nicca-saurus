@@ -69,7 +69,7 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
             sunday: parsedNicca.week.sunday,
           },
         },
-        saurustype: randomSaurusType,
+        saurusType: randomSaurusType,
         user: { connect: { id: userId } },
       },
       include: { week: true },
