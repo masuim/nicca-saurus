@@ -2,37 +2,16 @@
 
 import Image from 'next/image';
 import appLogo from '@/app/images/app-name/app-name-2column.png';
-import { useSignOut } from '@/services/auth-service';
 import { MenuButton } from './menu-button';
+import { useMenuItems } from '@/hooks/use-menu-items';
 
 type Props = {
   openRegisterModal: () => void;
   hasActiveNicca: boolean;
 };
 
-type MenuItem = {
-  label: string;
-  onClick?: () => void;
-  href?: string;
-};
-
 export const SideMenu = ({ openRegisterModal }: Props) => {
-  const signOutUser = useSignOut();
-
-  const handleOpenRegisterModal = () => {
-    openRegisterModal();
-  };
-
-  const menuItems: MenuItem[] = [
-    { label: '日課登録', onClick: handleOpenRegisterModal },
-    //TODO: 日課詳細いらなくない？日課一覧から詳細を確認したり、編集した方が良いと思う。
-    // { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
-    // TODO: 日課削除は、日課一覧, またはmainContentsから削除することになるので、ここには不要。
-    // { label: '日課削除', onClick: () => alert('日課削除クリック！') },
-    // TODO: 日課一覧は、画面遷移する方が良いと思う。一覧から何をするか？
-    { label: '日課一覧', href: '/user-nicca-list' },
-    { label: 'サインアウト', onClick: signOutUser },
-  ];
+  const menuItems = useMenuItems(openRegisterModal);
 
   return (
     <div className="hidden w-1/5 bg-primary p-4 text-white lg:block">

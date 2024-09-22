@@ -1,16 +1,28 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import logo from '@/app/images/logos/bg-removed-logo.png';
-import { useSignOut } from '@/services/auth-service';
+import { HamburgerMenu } from '@/components/layout/hamburger-menu';
+import { useMenuItems } from '@/hooks/use-menu-items';
 
-export const Header = () => {
+type Props = {
+  openRegisterModal: () => void;
+};
+
+export const Header = ({ openRegisterModal }: Props) => {
   const { data: session } = useSession();
-  const signOutUser = useSignOut();
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = useMenuItems(() => {
+    setIsOpen(false);
+    openRegisterModal();
+  });
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <header className="flex h-16 items-center justify-between bg-primary px-4 lg:hidden">
@@ -24,11 +36,14 @@ export const Header = () => {
           priority
         />
       </Link>
-      {session ? (
-        <Button onClick={signOutUser} variant="outline" size="sm">
-          サインアウト
-        </Button>
-      ) : null}
+      {session && (
+        <>
+          <button onClick={toggleMenu} className="text-white">
+            ☰
+          </button>
+          <HamburgerMenu isOpen={isOpen} onClose={closeMenu} menuItems={menuItems} />
+        </>
+      )}
     </header>
   );
 };
