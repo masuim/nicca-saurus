@@ -30,9 +30,7 @@ export function MainContents({
   }, [refreshActiveNicca, hasActiveNicca, setIsRegisterModalOpen]);
 
   const onCloseRegisterModal = () => {
-    if (hasActiveNicca) {
-      closeRegisterModal();
-    }
+    closeRegisterModal();
   };
 
   return (
