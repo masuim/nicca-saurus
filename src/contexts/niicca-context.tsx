@@ -1,25 +1,30 @@
 'use client';
+import { SaurusType } from '@/schemas/nicca-schemas';
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type NiccaContextType = {
   hasActiveNicca: boolean;
   setHasActiveNicca: (value: boolean) => void;
   refreshActiveNicca: () => Promise<void>;
+  activeNicca: { saurusType: SaurusType } | null;
 };
 
 const NiccaContext = createContext<NiccaContextType | undefined>(undefined);
 
 export const NiccaProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [hasActiveNicca, setHasActiveNicca] = useState(false);
+  const [activeNicca, setActiveNicca] = useState<{ saurusType: SaurusType } | null>(null);
 
   const refreshActiveNicca = async () => {
     try {
       const response = await fetch('/api/nicca/active');
       const data = await response.json();
       setHasActiveNicca(data.success);
+      setActiveNicca(data.success ? data.data : null);
     } catch (error) {
       console.error('アクティブな日課の確認中にエラーが発生しました:', error);
       setHasActiveNicca(false);
+      setActiveNicca(null);
     }
   };
 
@@ -28,7 +33,9 @@ export const NiccaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }, []);
 
   return (
-    <NiccaContext.Provider value={{ hasActiveNicca, setHasActiveNicca, refreshActiveNicca }}>
+    <NiccaContext.Provider
+      value={{ hasActiveNicca, setHasActiveNicca, refreshActiveNicca, activeNicca }}
+    >
       {children}
     </NiccaContext.Provider>
   );

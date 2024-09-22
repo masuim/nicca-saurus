@@ -1,4 +1,11 @@
 import { NiccaRegisterModal } from '@/components/common/modals/register';
+import { CustomCalendar } from '@/components/custom-calendar';
+import { NiccaMessage } from '@/components/nicca-message';
+import { SaurusImage } from '@/components/saurus-image';
+import { CompleteButton } from '@/components/complete-button';
+import { NiccaDeleteButton } from '@/components/nicca-delete-button';
+import { NiccaEditButton } from '@/components/nicca-edit-button';
+import { SaurusType } from '@/schemas/nicca-schemas';
 import { useEffect, ReactNode } from 'react';
 
 type Props = {
@@ -8,15 +15,16 @@ type Props = {
   closeRegisterModal: () => void;
   hasActiveNicca: boolean;
   refreshActiveNicca: () => Promise<void>;
+  activeNicca: { saurusType: SaurusType } | null;
 };
 
 export const MainContents = ({
-  children,
   isRegisterModalOpen,
   setIsRegisterModalOpen,
   closeRegisterModal,
   hasActiveNicca,
   refreshActiveNicca,
+  activeNicca,
 }: Props) => {
   useEffect(() => {
     const checkActiveNicca = async () => {
@@ -27,7 +35,7 @@ export const MainContents = ({
     };
 
     checkActiveNicca();
-  }, [refreshActiveNicca, hasActiveNicca, setIsRegisterModalOpen]);
+  }, []);
 
   const onCloseRegisterModal = () => {
     closeRegisterModal();
@@ -35,8 +43,20 @@ export const MainContents = ({
 
   return (
     <main className="flex-1 p-4">
-      <h1 className="mb-4 text-2xl font-bold">ダッシュボード</h1>
-      {children}
+      <div className="flex flex-col items-center justify-between md:flex-row md:items-start">
+        <div className="mb-4 flex flex-col items-center md:mb-0 md:w-1/2">
+          <SaurusImage saurusType={activeNicca?.saurusType ?? 'brachiosaurus'} />
+          <NiccaMessage />
+          <div className="mt-4 flex space-x-2">
+            <CompleteButton />
+            <NiccaEditButton />
+            <NiccaDeleteButton />
+          </div>
+        </div>
+        <div className="flex justify-center md:w-1/2">
+          <CustomCalendar />
+        </div>
+      </div>
       <NiccaRegisterModal
         isOpen={isRegisterModalOpen}
         onClose={onCloseRegisterModal}

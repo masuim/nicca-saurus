@@ -2,8 +2,8 @@ import { FlashMessage } from '@/components/flash-message';
 import { Providers } from '@/components/providers';
 import { FlashMessageProvider } from '@/contexts/flash-message-context';
 import { Metadata } from 'next';
-import './globals.css';
 import { NiccaProvider } from '@/contexts/niicca-context';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Nicca Saurus',

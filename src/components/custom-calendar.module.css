@@ -1,0 +1,95 @@
+.customCalendar {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+}
+
+.customDay {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.currentDay {
+  background-color: #f5d76e;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.customMonth {
+  font-weight: bold;
+  color: #333;
+}
+
+.customWeekDay {
+  color: #666;
+}
+
+.currentMonthDay {
+  color: #333;
+  font-weight: bold;
+}
+
+.otherMonthDay {
+  color: #999;
+}
+
+.dayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+
+.meatImage {
+  margin-top: 2px;
+}
+
+.customHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #082f68;
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.customHeaderText {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.customHeader button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.customHeader button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calendar :global(.react-datepicker__month) {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar :global(.react-datepicker__week) {
+  display: flex;
+}
+
+.calendar :global(.react-datepicker__day) {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}

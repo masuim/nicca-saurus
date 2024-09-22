@@ -17,7 +17,8 @@ export default function AuthPage() {
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
       <div className="lg:hidden">
-        <Header />
+        {/* TODO: 仮の対応、openRegisterModalには何を渡す？ */}
+        <Header openRegisterModal={() => {}} />
       </div>
       <div className="hidden w-full items-center justify-center bg-primary p-4 lg:flex lg:w-2/5 lg:p-8">
         <Image

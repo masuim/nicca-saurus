@@ -13,7 +13,7 @@ export default function Home() {
   const { status } = useSession();
   const router = useRouter();
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
-  const { hasActiveNicca, refreshActiveNicca } = useNicca();
+  const { hasActiveNicca, refreshActiveNicca, activeNicca } = useNicca();
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -47,6 +47,7 @@ export default function Home() {
           closeRegisterModal={closeRegisterModal}
           hasActiveNicca={hasActiveNicca}
           refreshActiveNicca={refreshActiveNicca}
+          activeNicca={activeNicca}
         >
           <div>main-contents</div>
         </MainContents>
