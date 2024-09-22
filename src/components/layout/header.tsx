@@ -9,10 +9,17 @@ import logo from '@/app/images/logos/bg-removed-logo.png';
 import { HamburgerMenu } from '@/components/layout/hamburger-menu';
 import { useMenuItems } from '@/hooks/use-menu-items';
 
-export const Header = () => {
+type Props = {
+  openRegisterModal: () => void;
+};
+
+export const Header = ({ openRegisterModal }: Props) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
-  const menuItems = useMenuItems(() => {});
+  const menuItems = useMenuItems(() => {
+    setIsOpen(false);
+    openRegisterModal();
+  });
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
