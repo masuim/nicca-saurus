@@ -59,15 +59,7 @@ export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nic
       data: {
         title: parsedNicca.title,
         week: {
-          create: {
-            monday: parsedNicca.week.monday,
-            tuesday: parsedNicca.week.tuesday,
-            wednesday: parsedNicca.week.wednesday,
-            thursday: parsedNicca.week.thursday,
-            friday: parsedNicca.week.friday,
-            saturday: parsedNicca.week.saturday,
-            sunday: parsedNicca.week.sunday,
-          },
+          create: parsedNicca.week,
         },
         saurusType: randomSaurusType,
         user: { connect: { id: userId } },
