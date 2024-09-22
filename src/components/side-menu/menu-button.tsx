@@ -6,7 +6,7 @@ type Props = {
   href?: string;
 };
 
-export function MenuButton({ label, onClick, href }: Props) {
+export const MenuButton = ({ label, onClick, href }: Props) => {
   const buttonContent = (
     <button
       className="bg-secondary hover:bg-secondary-dark w-full rounded px-4 py-2 text-left text-white"
@@ -19,4 +19,4 @@ export function MenuButton({ label, onClick, href }: Props) {
   return (
     <li className="mb-2">{href ? <Link href={href}>{buttonContent}</Link> : buttonContent}</li>
   );
-}
+};
