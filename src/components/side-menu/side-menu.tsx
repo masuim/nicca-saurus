@@ -30,7 +30,7 @@ export const SideMenu = ({ openRegisterModal }: Props) => {
     // TODO: 日課削除は、日課一覧, またはmainContentsから削除することになるので、ここには不要。
     // { label: '日課削除', onClick: () => alert('日課削除クリック！') },
     // TODO: 日課一覧は、画面遷移する方が良いと思う。一覧から何をするか？
-    { label: '日課一覧', href: '/nicca-list' },
+    { label: '日課一覧', href: '/user-nicca-list' },
     { label: 'サインアウト', onClick: signOutUser },
   ];
 

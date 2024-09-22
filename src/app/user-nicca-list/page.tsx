@@ -6,23 +6,22 @@ import { Header } from '@/components/layout/header';
 import { SideMenu } from '@/components/side-menu/side-menu';
 import { useSession } from 'next-auth/react';
 
-export default function NiccaListPage() {
-  const [niccas, setNiccas] = useState<Nicca[]>([]);
+export default function UserNiccaListPage() {
+  const [userNiccas, setUserNiccas] = useState<Nicca[]>([]);
   const { data: session } = useSession();
 
   useEffect(() => {
-    const fetchNiccas = async () => {
-      console.log('session', session?.user?.id);
+    const fetchUserNiccas = async () => {
       if (session?.user?.id) {
         const response = await fetch('/api/nicca/user-niccas');
         const data = await response.json();
         if (data.success) {
-          setNiccas(data.data);
+          setUserNiccas(data.data);
         }
       }
     };
 
-    fetchNiccas();
+    fetchUserNiccas();
   }, [session]);
 
   //TODO: 仮の内容。mainContents作成後に修正必要になる予定。
@@ -36,7 +35,7 @@ export default function NiccaListPage() {
         <main className="flex-1 p-4">
           <h1 className="mb-4 text-2xl font-bold">日課一覧</h1>
           <ul>
-            {niccas.map((nicca, index) => (
+            {userNiccas.map((nicca, index) => (
               <li key={index} className="mb-2">
                 <h2 className="text-lg font-semibold">{nicca.title}</h2>
                 <p>
