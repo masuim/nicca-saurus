@@ -5,6 +5,8 @@ import { Nicca } from '@/schemas/nicca-schemas';
 import { Header } from '@/components/layout/header';
 import { SideMenu } from '@/components/side-menu/side-menu';
 import { useSession } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function UserNiccaListPage() {
   const [userNiccas, setUserNiccas] = useState<Nicca[]>([]);
@@ -48,6 +50,11 @@ export default function UserNiccaListPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-6">
+            <Link href="/">
+              <Button variant="outline">ダッシュボードに戻る</Button>
+            </Link>
+          </div>
         </main>
       </div>
     </div>
