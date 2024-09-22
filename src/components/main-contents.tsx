@@ -10,14 +10,14 @@ type Props = {
   refreshActiveNicca: () => Promise<void>;
 };
 
-export function MainContents({
+export const MainContents = ({
   children,
   isRegisterModalOpen,
   setIsRegisterModalOpen,
   closeRegisterModal,
   hasActiveNicca,
   refreshActiveNicca,
-}: Props) {
+}: Props) => {
   useEffect(() => {
     const checkActiveNicca = async () => {
       await refreshActiveNicca();
@@ -30,9 +30,7 @@ export function MainContents({
   }, [refreshActiveNicca, hasActiveNicca, setIsRegisterModalOpen]);
 
   const onCloseRegisterModal = () => {
-    if (hasActiveNicca) {
-      closeRegisterModal();
-    }
+    closeRegisterModal();
   };
 
   return (
@@ -46,4 +44,4 @@ export function MainContents({
       />
     </main>
   );
-}
+};

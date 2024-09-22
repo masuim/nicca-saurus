@@ -16,9 +16,10 @@ export const NiccaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       const response = await fetch('/api/nicca/active');
       const data = await response.json();
-      setHasActiveNicca(data.hasActiveNicca);
+      setHasActiveNicca(data.success);
     } catch (error) {
       console.error('アクティブな日課の確認中にエラーが発生しました:', error);
+      setHasActiveNicca(false);
     }
   };
 
