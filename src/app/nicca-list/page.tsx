@@ -4,21 +4,26 @@ import { useEffect, useState } from 'react';
 import { Nicca } from '@/schemas/nicca-schemas';
 import { Header } from '@/components/layout/header';
 import { SideMenu } from '@/components/side-menu/side-menu';
+import { useSession } from 'next-auth/react';
 
 export default function NiccaListPage() {
   const [niccas, setNiccas] = useState<Nicca[]>([]);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchNiccas = async () => {
-      const response = await fetch('/api/nicca');
-      const data = await response.json();
-      if (data.success) {
-        setNiccas(data.data);
+      console.log('session', session?.user?.id);
+      if (session?.user?.id) {
+        const response = await fetch('/api/nicca/user-niccas');
+        const data = await response.json();
+        if (data.success) {
+          setNiccas(data.data);
+        }
       }
     };
 
     fetchNiccas();
-  }, []);
+  }, [session]);
 
   //TODO: 仮の内容。mainContents作成後に修正必要になる予定。
   return (

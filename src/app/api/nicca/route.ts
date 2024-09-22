@@ -5,38 +5,6 @@ import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 
-export const GET = async (): Promise<NextResponse<ApiResult<Nicca[]>>> => {
-  try {
-    const dashboardData = await prisma.nicca.findMany({
-      include: {
-        week: true,
-      },
-    });
-
-    const formattedData = dashboardData.map((nicca) => ({
-      title: nicca.title,
-      week: {
-        sunday: !!nicca.week?.sunday,
-        monday: !!nicca.week?.monday,
-        tuesday: !!nicca.week?.tuesday,
-        wednesday: !!nicca.week?.wednesday,
-        thursday: !!nicca.week?.thursday,
-        friday: !!nicca.week?.friday,
-        saturday: !!nicca.week?.saturday,
-      },
-    }));
-
-    return NextResponse.json({ success: true, data: formattedData, status: 200 });
-  } catch (error) {
-    console.error('Error fetching dashboard data:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'データ取得中にエラーが発生しました',
-      status: 500,
-    });
-  }
-};
-
 export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nicca>>> => {
   try {
     const nicca = await request.json();
