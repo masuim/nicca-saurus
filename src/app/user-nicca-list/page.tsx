@@ -30,7 +30,7 @@ export default function UserNiccaListPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <div className="lg:hidden">
-        <Header />
+        <Header openRegisterModal={() => {}} />
       </div>
       <div className="flex flex-1 flex-col lg:flex-row">
         <SideMenu openRegisterModal={() => {}} hasActiveNicca={false} />

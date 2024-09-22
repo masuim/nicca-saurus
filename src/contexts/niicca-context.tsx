@@ -43,7 +43,7 @@ export const NiccaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
 export const useNicca = () => {
   const context = useContext(NiccaContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useNicca must be used within a NiccaProvider');
   }
   return context;
