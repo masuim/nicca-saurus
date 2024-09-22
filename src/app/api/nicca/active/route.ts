@@ -21,18 +21,29 @@ export const GET = async () => {
         userId: userId,
         isActive: true,
       },
+      include: {
+        week: true,
+      },
     });
+
+    if (!activeNicca) {
+      return NextResponse.json({
+        success: false,
+        error: 'アクティブな日課が見つかりません',
+        status: 404,
+      });
+    }
 
     return NextResponse.json({
       success: true,
-      hasActiveNicca: !!activeNicca,
+      data: activeNicca,
       status: 200,
     });
   } catch (error) {
-    console.error('アクティブな日課の確認中にエラーが発生しました:', error);
+    console.error('アクティブな日課の取得中にエラーが発生しました:', error);
     return NextResponse.json({
       success: false,
-      error: 'アクティブな日課の確認中にエラーが発生しました',
+      error: 'アクティブな日課の取得中にエラーが発生しました',
       status: 500,
     });
   }

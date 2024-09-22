@@ -26,7 +26,8 @@ export const SideMenu = ({ openRegisterModal, hasActiveNicca }: Props) => {
     { label: '日課登録', onClick: handleOpenRegisterModal },
     //TODO: 日課詳細いらなくない？日課一覧から詳細を確認したり、編集した方が良いと思う。
     // { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
-    { label: '日課削除', onClick: () => alert('日課削除クリック！') },
+    // TODO: 日課削除は、日課一覧, またはmainContentsから削除することになるので、ここには不要。
+    // { label: '日課削除', onClick: () => alert('日課削除クリック！') },
     // TODO: 日課一覧は、画面遷移する方が良いと思う。一覧から何をするか？
     { label: '日課一覧', onClick: () => alert('日課一覧クリック！') },
     { label: 'サインアウト', onClick: signOutUser },
