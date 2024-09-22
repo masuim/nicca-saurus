@@ -1,5 +1,5 @@
 import { NiccaRegisterModal } from '@/components/common/modals/register';
-import { useEffect, useState, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -7,7 +7,7 @@ type Props = {
   setIsRegisterModalOpen: (isOpen: boolean) => void;
   closeRegisterModal: () => void;
   hasActiveNicca: boolean;
-  setHasActiveNicca: (hasActive: boolean) => void;
+  refreshActiveNicca: () => Promise<void>;
 };
 
 export function MainContents({
@@ -15,21 +15,19 @@ export function MainContents({
   isRegisterModalOpen,
   setIsRegisterModalOpen,
   closeRegisterModal,
+  hasActiveNicca,
+  refreshActiveNicca,
 }: Props) {
-  const [hasActiveNicca, setHasActiveNicca] = useState(false);
-
   useEffect(() => {
     const checkActiveNicca = async () => {
-      const response = await fetch('/api/nicca/active');
-      const data = await response.json();
-      setHasActiveNicca(data.hasActiveNicca);
-      if (!data.hasActiveNicca) {
+      await refreshActiveNicca();
+      if (!hasActiveNicca) {
         setIsRegisterModalOpen(true);
       }
     };
 
     checkActiveNicca();
-  }, [setIsRegisterModalOpen]);
+  }, [refreshActiveNicca, hasActiveNicca, setIsRegisterModalOpen]);
 
   const onCloseRegisterModal = () => {
     if (hasActiveNicca) {

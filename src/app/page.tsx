@@ -3,6 +3,8 @@
 import { Header } from '@/components/layout/header';
 import { MainContents } from '@/components/main-contents';
 import { SideMenu } from '@/components/side-menu/side-menu';
+import { useNicca } from '@/contexts/niicca-context';
+
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -11,7 +13,7 @@ export default function Home() {
   const { status } = useSession();
   const router = useRouter();
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
-  const [hasActiveNicca, setHasActiveNicca] = useState(false);
+  const { hasActiveNicca, refreshActiveNicca } = useNicca();
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -19,27 +21,18 @@ export default function Home() {
     }
   }, [status, router]);
 
-  useEffect(() => {
-    const checkActiveNicca = async () => {
-      const response = await fetch('/api/nicca/active');
-      const data = await response.json();
-      setHasActiveNicca(data.hasActiveNicca);
-      if (!data.hasActiveNicca) {
-        setIsRegisterModalOpen(true);
-      }
-    };
-
-    checkActiveNicca();
-  }, []);
-
   const openRegisterModal = () => {
     if (hasActiveNicca) {
       alert('途中の日課があります');
-    } else {
-      setIsRegisterModalOpen(true);
+      return;
     }
+    setIsRegisterModalOpen(true);
   };
-  const closeRegisterModal = () => setIsRegisterModalOpen(false);
+
+  const closeRegisterModal = () => {
+    setIsRegisterModalOpen(false);
+    refreshActiveNicca();
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -53,7 +46,7 @@ export default function Home() {
           setIsRegisterModalOpen={setIsRegisterModalOpen}
           closeRegisterModal={closeRegisterModal}
           hasActiveNicca={hasActiveNicca}
-          setHasActiveNicca={setHasActiveNicca}
+          refreshActiveNicca={refreshActiveNicca}
         >
           <div>main-contents</div>
         </MainContents>

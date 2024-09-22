@@ -11,8 +11,6 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
-  //TODO: 前のバージョンで使った
-  // setDashboardData: (data: DashboardData | null) => void;
 };
 
 const dayMap = ['月', '火', '水', '木', '金', '土', '日'];
@@ -84,14 +82,15 @@ export const NiccaRegisterModal = ({ isOpen, onClose, onSuccess }: Props) => {
       };
       const result = await registerNicca(nicca);
 
-      if (result.success) {
-        showFlashMessage('日課が正常に登録されました', 'success');
-        onClose();
-        onSuccess(); // この行を追加
-        form.reset();
-      } else {
+      if (!result.success) {
         showFlashMessage(result.error || '日課の登録に失敗しました', 'error');
+        return;
       }
+
+      showFlashMessage('日課が正常に登録されました', 'success');
+      onClose();
+      onSuccess();
+      form.reset();
     } catch (error) {
       showFlashMessage('日課の登録中にエラーが発生しました', 'error');
     }
