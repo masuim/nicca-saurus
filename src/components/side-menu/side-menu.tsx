@@ -1,32 +1,34 @@
 'use client';
 
-import { NiccaRegisterModal } from '@/components/common/modals/register';
 import Image from 'next/image';
-import { useState } from 'react';
-
 import appLogo from '@/app/images/app-name/app-name-2column.png';
-
 import { useSignOut } from '@/services/auth-service';
 import { MenuButton } from './menu-button';
+
+type Props = {
+  openRegisterModal: () => void;
+  hasActiveNicca: boolean;
+};
 
 type MenuItem = {
   label: string;
   onClick?: () => void;
 };
 
-export const SideMenu = () => {
+export const SideMenu = ({ openRegisterModal, hasActiveNicca }: Props) => {
   const signOutUser = useSignOut();
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
-  const openRegisterModal = () => {
-    setIsRegisterModalOpen(true);
+  const handleOpenRegisterModal = () => {
+    openRegisterModal();
   };
 
   const menuItems: MenuItem[] = [
-    { label: '日課登録', onClick: openRegisterModal },
-    { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
-    { label: '日課一覧', onClick: () => alert('日課一覧クリック！') },
+    { label: '日課登録', onClick: handleOpenRegisterModal },
+    //TODO: 日課詳細いらなくない？日課一覧から詳細を確認したり、編集した方が良いと思う。
+    // { label: '日課詳細', onClick: () => alert('日課詳細クリック！') },
     { label: '日課削除', onClick: () => alert('日課削除クリック！') },
+    // TODO: 日課一覧は、画面遷移する方が良いと思う。一覧から何をするか？
+    { label: '日課一覧', onClick: () => alert('日課一覧クリック！') },
     { label: 'サインアウト', onClick: signOutUser },
   ];
 
@@ -40,10 +42,6 @@ export const SideMenu = () => {
           ))}
         </ul>
       </div>
-      <NiccaRegisterModal
-        isOpen={isRegisterModalOpen}
-        onClose={() => setIsRegisterModalOpen(false)}
-      />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Providers } from '@/components/providers';
 import { FlashMessageProvider } from '@/contexts/flash-message-context';
 import { Metadata } from 'next';
 import './globals.css';
+import { NiccaProvider } from '@/contexts/niicca-context';
 
 export const metadata: Metadata = {
   title: 'Nicca Saurus',
@@ -15,8 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-dotgothic">
         <Providers>
           <FlashMessageProvider>
-            <FlashMessage />
-            {children}
+            <NiccaProvider>
+              <FlashMessage />
+              {children}
+            </NiccaProvider>
           </FlashMessageProvider>
         </Providers>
       </body>

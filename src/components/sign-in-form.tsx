@@ -20,13 +20,14 @@ export const SignInForm = ({ setIsSignUp }: Props) => {
     try {
       const result = await signInUser(values);
 
-      if (result?.error) {
+      if (!result.success) {
         form.setError('root', { message: result.error });
         showFlashMessage(result.error, 'error');
-      } else {
-        showFlashMessage('サインインに成功しました', 'success');
-        router.push('/');
+        return;
       }
+
+      showFlashMessage('サインインに成功しました', 'success');
+      router.push('/');
     } catch (err) {
       const errorMessage = 'サインイン中に予期せぬエラーが発生しました';
       form.setError('root', { message: errorMessage });
