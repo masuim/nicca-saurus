@@ -29,13 +29,15 @@ export const MainContents = ({
   useEffect(() => {
     const checkActiveNicca = async () => {
       await refreshActiveNicca();
-      if (!hasActiveNicca) {
+      if (!hasActiveNicca && !isRegisterModalOpen) {
         setIsRegisterModalOpen(true);
+      } else if (hasActiveNicca && isRegisterModalOpen) {
+        setIsRegisterModalOpen(false);
       }
     };
 
     checkActiveNicca();
-  }, []);
+  }, [refreshActiveNicca, hasActiveNicca, isRegisterModalOpen, setIsRegisterModalOpen]);
 
   const onCloseRegisterModal = () => {
     closeRegisterModal();
@@ -65,11 +67,13 @@ export const MainContents = ({
           </div>
         </div>
       </div>
-      <NiccaRegisterModal
-        isOpen={isRegisterModalOpen}
-        onClose={onCloseRegisterModal}
-        onSuccess={closeRegisterModal}
-      />
+      {isRegisterModalOpen && (
+        <NiccaRegisterModal
+          isOpen={isRegisterModalOpen}
+          onClose={onCloseRegisterModal}
+          onSuccess={closeRegisterModal}
+        />
+      )}
     </main>
   );
 };
