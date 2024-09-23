@@ -42,9 +42,9 @@ export const MainContents = ({
   };
 
   return (
-    <main className="xs:p-10 flex-1 items-center p-10 md:p-20 lg:p-32">
-      <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
-        <div className="xs:w-full xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
+    <main className="xs:p-10 flex-1 items-center bg-yellow-200 p-10 md:p-20 lg:p-32">
+      <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-orange-300">
+        <div className="xs:w-full xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-purple-200">
           <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
             <SaurusImage
               saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
