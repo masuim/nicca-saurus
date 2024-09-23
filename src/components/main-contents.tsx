@@ -42,25 +42,25 @@ export const MainContents = ({
   };
 
   return (
-    <main className="flex-1 items-center p-10 sm:p-10 md:p-20 lg:p-32">
-      <div className="flex flex-col items-center lg:flex-row">
-        <div className="flex flex-col items-center lg:w-full">
-          <div className="flex flex-col items-center lg:flex-row">
+    <main className="xs:p-10 flex-1 items-center p-10 md:p-20 lg:p-32">
+      <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
+        <div className="xs:w-full xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
+          <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
             <SaurusImage
               saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
-              className="lg:w-1/2"
+              className="xs:w-1/2"
             />
-            <div className="flex flex-col items-center lg:mt-4 lg:w-1/2">
-              <div className="flex-1 lg:flex lg:space-x-2">
-                <CompleteButton className="lg:w-3/5" />
-                <NiccaEditButton className="lg:w-1/5" />
-                <NiccaDeleteButton className="lg:w-1/5" />
+            <div className="xs:mt-4 xs:w-1/2 xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
+              <div className="flex">
+                <CompleteButton className="xs:w-3/5" />
+                <NiccaEditButton className="xs:w-1/5" />
+                <NiccaDeleteButton className="xs:w-1/5" />
               </div>
-              <NiccaMessage className="mt-4 lg:mt-4 lg:w-full" />
+              <NiccaMessage className="xs:mt-4 xs:w-3/5 mt-4" />
             </div>
           </div>
-          <div className="flex-1 lg:mt-4">
-            <CustomCalendar className="lg:size-full" />
+          <div className="xs:mt-4 flex-1">
+            <CustomCalendar className="xs:size-full" />
           </div>
         </div>
       </div>

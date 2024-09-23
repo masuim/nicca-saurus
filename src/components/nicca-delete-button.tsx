@@ -12,7 +12,7 @@ export const NiccaDeleteButton = ({ className }: { className?: string }) => {
       variant="outline"
       className={`flex items-center justify-center bg-transparent text-error ${className}`}
     >
-      <Trash2 className="mr-2 size-6" />
+      <Trash2 className="size-6" />
     </Button>
   );
 };
