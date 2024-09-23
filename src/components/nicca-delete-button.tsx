@@ -7,8 +7,12 @@ export const NiccaDeleteButton = () => {
   };
 
   return (
-    <Button onClick={handleDelete} variant="outline" className="border-error text-error">
-      <Trash2 className="mr-2 size-4" />
+    <Button
+      onClick={handleDelete}
+      variant="outline"
+      className="flex items-center justify-center bg-transparent text-error"
+    >
+      <Trash2 className="mr-2 size-6" />
     </Button>
   );
 };

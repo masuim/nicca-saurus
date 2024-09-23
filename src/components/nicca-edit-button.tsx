@@ -7,8 +7,12 @@ export const NiccaEditButton = () => {
   };
 
   return (
-    <Button onClick={handleEdit} variant="outline" className="border-primary text-primary">
-      <Edit className="mr-2 size-4" />
+    <Button
+      onClick={handleEdit}
+      variant="outline"
+      className="flex items-center justify-center bg-transparent text-primary"
+    >
+      <Edit className="size-6" />
     </Button>
   );
 };
