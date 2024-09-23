@@ -50,13 +50,13 @@ export const MainContents = ({
               saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
               className="xs:w-1/2"
             />
-            <div className="xs:mt-4 xs:w-1/2 xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
-              <div className="flex">
+            <div className="xs:mt-4 xs:w-1/2 xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-red-200">
+              <div className="flex w-full bg-blue-200">
                 <CompleteButton className="xs:w-3/5" />
                 <NiccaEditButton className="xs:w-1/5" />
                 <NiccaDeleteButton className="xs:w-1/5" />
               </div>
-              <NiccaMessage className="xs:mt-4 xs:w-3/5 mt-4" />
+              <NiccaMessage className="mt-4" />
             </div>
           </div>
           <div className="xs:mt-4 flex-1">
