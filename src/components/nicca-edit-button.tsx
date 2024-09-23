@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Edit } from 'lucide-react';
 
-export const NiccaEditButton = () => {
+export const NiccaEditButton = ({ className }: { className?: string }) => {
   const handleEdit = () => {
     alert('編集Clicked!!');
   };
@@ -10,7 +10,7 @@ export const NiccaEditButton = () => {
     <Button
       onClick={handleEdit}
       variant="outline"
-      className="flex items-center justify-center bg-transparent text-primary"
+      className={`flex items-center justify-center bg-transparent text-primary ${className}`}
     >
       <Edit className="size-6" />
     </Button>

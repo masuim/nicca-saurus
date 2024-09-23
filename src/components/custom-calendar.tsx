@@ -4,7 +4,7 @@ import styles from './custom-calendar.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export const CustomCalendar = () => {
+export const CustomCalendar = ({ className }: { className?: string }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const renderDayContents = (day: number, date: Date) => {
@@ -64,7 +64,7 @@ export const CustomCalendar = () => {
   };
 
   return (
-    <div className={styles.calendar}>
+    <div className={`${styles.calendar} ${className}`}>
       <DatePicker
         inline
         readOnly

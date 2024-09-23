@@ -2,12 +2,13 @@ import { SaurusType } from '@/schemas/nicca-schemas';
 
 type Props = {
   saurusType: SaurusType;
+  className?: string;
 };
 
-export const SaurusImage = ({ saurusType }: Props) => {
+export const SaurusImage = ({ saurusType, className }: Props) => {
   const imagePath = `/images/saurus/${saurusType}/${saurusType}1.png`;
   return (
-    <div className="mb-4">
+    <div className={`mb-4 ${className}`}>
       <img
         src={imagePath}
         alt={saurusType}

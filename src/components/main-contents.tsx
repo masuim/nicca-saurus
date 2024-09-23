@@ -42,19 +42,26 @@ export const MainContents = ({
   };
 
   return (
-    <main className="flex-1 p-4">
-      <div className="flex flex-col items-center justify-between md:flex-row md:items-start">
-        <div className="mb-4 flex flex-col items-center md:mb-0 md:w-1/2">
-          <SaurusImage saurusType={activeNicca?.saurusType ?? 'brachiosaurus'} />
-          <NiccaMessage />
-          <div className="mt-4 flex space-x-2">
-            <CompleteButton />
-            <NiccaEditButton />
-            <NiccaDeleteButton />
+    <main className="flex-1 items-center p-10 sm:p-10 md:p-20 lg:p-32">
+      <div className="flex flex-col items-center lg:flex-row">
+        <div className="flex flex-col items-center lg:w-full">
+          <div className="flex flex-col items-center lg:flex-row">
+            <SaurusImage
+              saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
+              className="lg:w-1/2"
+            />
+            <div className="flex flex-col items-center lg:mt-4 lg:w-1/2">
+              <div className="flex-1 lg:flex lg:space-x-2">
+                <CompleteButton className="lg:w-3/5" />
+                <NiccaEditButton className="lg:w-1/5" />
+                <NiccaDeleteButton className="lg:w-1/5" />
+              </div>
+              <NiccaMessage className="mt-4 lg:mt-4 lg:w-full" />
+            </div>
           </div>
-        </div>
-        <div className="flex justify-center md:w-1/2">
-          <CustomCalendar />
+          <div className="flex-1 lg:mt-4">
+            <CustomCalendar className="lg:size-full" />
+          </div>
         </div>
       </div>
       <NiccaRegisterModal
