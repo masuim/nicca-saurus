@@ -45,13 +45,14 @@ export const MainContents = ({
     <main className="xs:p-10 flex-1 items-center bg-yellow-200 p-10 md:p-20 lg:p-32">
       <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-orange-300">
         <div className="xs:flex-row xs:flex-wrap xs:justify-center flex w-full flex-col items-center bg-purple-200">
-          <div className="xs:w-full xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center">
+          <div className="xs:w-full xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-red-200">
             <SaurusImage
               saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
               className="xs:w-1/2"
             />
             <div className="xs:mt-0 xs:w-1/2 xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-red-200">
               <div className="flex w-full bg-blue-200">
+                {/* TODO: それぞれのボタンのmax-widthを設定する */}
                 <CompleteButton className="xs:w-3/5" />
                 <NiccaEditButton className="xs:w-1/5" />
                 <NiccaDeleteButton className="xs:w-1/5" />
