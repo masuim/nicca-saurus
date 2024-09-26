@@ -1,10 +1,6 @@
 import { z } from 'zod';
-export const SAURUS_TYPES = z.union([
-  z.literal('brachiosaurus'),
-  z.literal('triceratops'),
-  z.literal('pteranodon'),
-  z.literal('tyrannosaurus'),
-]);
+
+export const SAURUS_TYPES = z.enum(['brachiosaurus', 'triceratops', 'pteranodon', 'tyrannosaurus']);
 
 export const WeekSchema = z
   .object({
