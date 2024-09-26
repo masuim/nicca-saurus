@@ -41,6 +41,8 @@
 }
 
 .meatImage {
+  width: 15px;
+  height: 15px;
   margin-top: 2px;
 }
 
@@ -75,20 +77,78 @@
   cursor: not-allowed;
 }
 
+.calendar :global(.react-datepicker) {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.8rem;
+  margin: 0 auto;
+}
+
+.calendar :global(.react-datepicker__month-container) {
+  width: 100%;
+}
+
 .calendar :global(.react-datepicker__month) {
-  display: flex;
-  flex-direction: column;
-}
-
-.calendar :global(.react-datepicker__week) {
-  display: flex;
-}
-
-.calendar :global(.react-datepicker__day) {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0;
-  padding: 0;
+  padding: 0.4rem;
+}
+
+.calendar :global(.react-datepicker__day-name),
+.calendar :global(.react-datepicker__day) {
+  width: 14.28%;
+  margin: 0;
+  padding: 0.5rem 0;
+  line-height: 1.7rem;
+}
+
+@media (min-width: 425px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 0.9rem;
+  }
+  .dayContainer {
+    font-size: 1rem;
+  }
+  .meatImage {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (min-width: 640px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 1rem;
+  }
+  .dayContainer {
+    font-size: 1.1rem;
+  }
+  .meatImage {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 1.1rem;
+  }
+  .dayContainer {
+    font-size: 1.2rem;
+  }
+  .meatImage {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 1.2rem;
+  }
+  .dayContainer {
+    font-size: 1.3rem;
+  }
+  .meatImage {
+    width: 25px;
+    height: 25px;
+  }
 }

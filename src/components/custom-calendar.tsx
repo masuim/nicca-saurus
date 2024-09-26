@@ -17,8 +17,8 @@ export const CustomCalendar = ({ className }: { className?: string }) => {
         <Image
           src="/images/meat/meat-removebg.png"
           alt="Meat"
-          width={15}
-          height={15}
+          width={30}
+          height={30}
           className={styles.meatImage}
         />
       </div>
@@ -64,22 +64,24 @@ export const CustomCalendar = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className={`${styles.calendar} ${className}`}>
-      <DatePicker
-        inline
-        readOnly
-        selected={currentMonth}
-        onChange={(date: Date | null) => date && setCurrentMonth(date)}
-        dayClassName={(date) => {
-          const isCurrentMonth = date.getMonth() === currentMonth.getMonth();
-          const isToday = date.toDateString() === new Date().toDateString();
-          if (isToday) return styles.currentDay;
-          return isCurrentMonth ? styles.currentMonthDay : styles.otherMonthDay;
-        }}
-        renderDayContents={renderDayContents}
-        renderCustomHeader={renderCustomHeader}
-        disabledKeyboardNavigation
-      />
+    <div className={`${styles.calendar} ${className} flex w-full justify-center`}>
+      <div className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[560px]">
+        <DatePicker
+          inline
+          readOnly
+          selected={currentMonth}
+          onChange={(date: Date | null) => date && setCurrentMonth(date)}
+          dayClassName={(date) => {
+            const isCurrentMonth = date.getMonth() === currentMonth.getMonth();
+            const isToday = date.toDateString() === new Date().toDateString();
+            if (isToday) return styles.currentDay;
+            return isCurrentMonth ? styles.currentMonthDay : styles.otherMonthDay;
+          }}
+          renderDayContents={renderDayContents}
+          renderCustomHeader={renderCustomHeader}
+          disabledKeyboardNavigation
+        />
+      </div>
     </div>
   );
 };

@@ -44,24 +44,29 @@ export const MainContents = ({
   };
 
   return (
-    <main className="flex-1 items-center bg-yellow-200 p-10">
-      <div className="xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-orange-300">
-        <div className="xs:w-full xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-red-200">
-          <SaurusImage
-            saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
-            className="xs:w-1/2"
-          />
-          <div className="xs:mt-0 xs:w-1/2 xs:flex-row xs:flex-wrap xs:justify-center flex flex-col items-center bg-gray-200">
-            <div className="flex w-full bg-blue-200">
-              {/* TODO: それぞれのボタンのmax-widthを設定する */}
-              <CompleteButton className="xs:w-3/5" />
-              <NiccaEditButton className="xs:w-1/5" />
-              <NiccaDeleteButton className="xs:w-1/5" />
+    <main className="flex-1 items-center bg-yellow-200 p-4 md:p-5 lg:p-10">
+      <div className="mx-auto flex w-full max-w-4xl flex-col items-center">
+        <div className="flex w-full flex-col items-center rounded-lg bg-blue-200 p-4 sm:p-6 md:p-8">
+          <div className="flex w-full max-w-[560px] flex-col items-center bg-orange-200">
+            <div className="flex w-full flex-col items-center sm:flex-row sm:justify-center">
+              <SaurusImage
+                saurusType={activeNicca?.saurusType ?? 'brachiosaurus'}
+                className="w-full max-w-[200px] sm:w-1/2 sm:max-w-[250px] md:w-1/3"
+              />
+              <div className="mt-4 flex w-full flex-col items-center sm:mt-0 sm:w-1/2 md:w-2/3">
+                <div className="flex w-full max-w-[300px] justify-center">
+                  <CompleteButton className="grow" />
+                  <NiccaEditButton className="ml-2 w-12" />
+                  <NiccaDeleteButton className="ml-2 w-12" />
+                </div>
+                <NiccaMessage className="mt-4 w-full max-w-[300px]" />
+              </div>
             </div>
-            <NiccaMessage className="xs:mt-4 mt-4" />
+          </div>
+          <div className="mt-8 w-full max-w-[560px] bg-green-200">
+            <CustomCalendar className="w-full" />
           </div>
         </div>
-        <CustomCalendar className="xs: mt-4 w-full bg-green-200" />
       </div>
       {isRegisterModalOpen && (
         <NiccaRegisterModal
