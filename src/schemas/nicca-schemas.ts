@@ -1,5 +1,6 @@
 import { z } from 'zod';
-
+// TODO: 全て大文字で書いた方がいい？スキーマではなくてSAURUS_TYPEとかにしてもいいかも。 調査してから判断する。
+// TODO: enumは使わない方が良さそう。
 export const SaurusTypeSchema = z.enum([
   'brachiosaurus',
   'triceratops',

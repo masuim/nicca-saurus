@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 
+// TODO: prisma使う場合は、api配下ではなくて良い？調査したい。これだと通信回数が増えちゃって遅い？？
 export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nicca>>> => {
   try {
     const nicca = await request.json();

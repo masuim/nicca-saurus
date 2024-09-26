@@ -71,5 +71,6 @@
   },
   "resolutions": {
     "inflight": "npm:lru-cache@^7.14.1"
-  }
+  },
+  "type": "module"
 }

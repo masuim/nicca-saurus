@@ -7,7 +7,7 @@ import { NiccaDeleteButton } from '@/components/nicca-delete-button';
 import { NiccaEditButton } from '@/components/nicca-edit-button';
 import { SaurusType } from '@/schemas/nicca-schemas';
 import { useEffect, ReactNode } from 'react';
-
+// TODO: useEffectは使わないようにする。調査。
 type Props = {
   children: ReactNode;
   isRegisterModalOpen: boolean;

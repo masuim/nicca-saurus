@@ -1,5 +1,10 @@
 'use client';
 
+// TODO: サーバーコンポーネントとして保持し、クライアント側の機能（状態管理、イベントハンドリングなど）を含む新しいコンポーネント（例：UserNiccaListPageClient）を作成するように修正が必要。
+// TODO: ログインしていない場合は、ログイン画面にリダイレクトするようにする。なってる？
+// TODO: ログインしている場合は、ログインしているユーザーの日課一覧を取得する。
+// TODO: 表示が遅いのは、サーバーの処理とクライアントの処理両方がここに書かれているから？
+
 import { useEffect, useState } from 'react';
 import { Nicca } from '@/schemas/nicca-schemas';
 import { Header } from '@/components/layout/header';
