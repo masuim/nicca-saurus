@@ -4,7 +4,7 @@ import styles from './calendar.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 
-export const CustomCalendar = ({ className }: { className?: string }) => {
+export const Calendar = ({ className }: { className?: string }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const renderDayContents = (day: number, date: Date) => {

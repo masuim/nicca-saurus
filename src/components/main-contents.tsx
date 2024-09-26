@@ -1,5 +1,5 @@
 import { NiccaRegisterModal } from '@/components/common/modals/register';
-import { CustomCalendar } from '@/components/calendar';
+import { Calendar } from '@/components/calendar';
 import { NiccaMessage } from '@/components/nicca-message';
 import { SaurusImage } from '@/components/saurus-image';
 import { CompleteButton } from '@/components/complete-button';
@@ -64,7 +64,7 @@ export const MainContents = ({
             </div>
           </div>
           <div className="mt-8 w-full max-w-[560px] bg-green-200">
-            <CustomCalendar className="w-full" />
+            <Calendar className="w-full" />
           </div>
         </div>
       </div>
