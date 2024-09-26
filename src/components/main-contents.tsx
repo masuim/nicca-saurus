@@ -1,5 +1,5 @@
 import { NiccaRegisterModal } from '@/components/common/modals/register';
-import { CustomCalendar } from '@/components/custom-calendar';
+import { CustomCalendar } from '@/components/calendar';
 import { NiccaMessage } from '@/components/nicca-message';
 import { SaurusImage } from '@/components/saurus-image';
 import { CompleteButton } from '@/components/complete-button';

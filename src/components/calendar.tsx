@@ -1,6 +1,6 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import styles from './custom-calendar.module.css';
+import styles from './calendar.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 
