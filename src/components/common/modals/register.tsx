@@ -87,7 +87,7 @@ export const NiccaRegisterModal = ({ isOpen, onClose, onSuccess }: Props) => {
         return;
       }
 
-      showFlashMessage('日課が正常に登録されました', 'success');
+      showFlashMessage('日課が登録されました', 'success');
       onClose();
       onSuccess();
       form.reset();
