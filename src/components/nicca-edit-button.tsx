@@ -10,7 +10,7 @@ export const NiccaEditButton = ({ className }: { className?: string }) => {
     <Button
       onClick={handleEdit}
       variant="outline"
-      className={`xs:min-w-[48px] flex flex-1 items-center justify-center bg-transparent text-primary ${className}`}
+      className={`flex flex-1 items-center justify-center bg-transparent text-primary xs:min-w-[48px] ${className}`}
     >
       <Edit size={16} />
     </Button>
