@@ -1,11 +1,9 @@
 import { z } from 'zod';
-// TODO: 全て大文字で書いた方がいい？スキーマではなくてSAURUS_TYPEとかにしてもいいかも。 調査してから判断する。
-// TODO: enumは使わない方が良さそう。
-export const SaurusTypeSchema = z.enum([
-  'brachiosaurus',
-  'triceratops',
-  'pteranodon',
-  'tyrannosaurus',
+export const SAURUS_TYPES = z.union([
+  z.literal('brachiosaurus'),
+  z.literal('triceratops'),
+  z.literal('pteranodon'),
+  z.literal('tyrannosaurus'),
 ]);
 
 export const WeekSchema = z
@@ -31,7 +29,7 @@ export const BackendDataSchema = z.object({
   niccaId: z.number().nullable().optional(),
   title: z.string().nullable().optional(),
   frequency: z.number().nullable().optional(),
-  saurusType: SaurusTypeSchema.nullable().optional(),
+  saurusType: SAURUS_TYPES.nullable().optional(),
   quotient: z.number().nullable().optional(),
 });
 // TODO: 未使用
@@ -46,7 +44,7 @@ export const NiccaSchema = z.object({
   week: WeekSchema,
 });
 
-export type SaurusType = z.infer<typeof SaurusTypeSchema>;
+export type SaurusType = z.infer<typeof SAURUS_TYPES>;
 export type Week = z.infer<typeof WeekSchema>;
 export type ApiResponse = z.infer<typeof BackendDataSchema>;
 export type DashboardData = z.infer<typeof DashboardDataSchema>;
