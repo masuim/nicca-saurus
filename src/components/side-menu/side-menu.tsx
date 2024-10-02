@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import appLogo from '@/app/images/app-name/app-name-2column.png';
+import appLogo from '../../../public/images/app-name/app-name-2column.png';
 import { MenuButton } from './menu-button';
 import { useMenuItems } from '@/hooks/use-menu-items';
 

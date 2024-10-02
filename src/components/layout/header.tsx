@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import logo from '@/app/images/logos/bg-removed-logo.png';
+import logo from '../../../public/images/logos/bg-removed-logo.png';
 import { HamburgerMenu } from '@/components/layout/hamburger-menu';
 import { useMenuItems } from '@/hooks/use-menu-items';
 

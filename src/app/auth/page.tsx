@@ -7,7 +7,7 @@ import { Header } from '@/components/layout/header';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import logo from '@/app/images/logos/bg-removed-logo.png';
+import logo from '../../../public/images/logos/bg-removed-logo.png';
 import { SignInForm } from '@/components/sign-in-form';
 import { SignUpForm } from '@/components/sign-up-form';
 
