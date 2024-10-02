@@ -5,7 +5,7 @@ import { useSignInForm } from '@/hooks/use-auth-form';
 import { SignInFormData } from '@/schemas/auth-schemas';
 import { signInUser } from '@/services/auth-service';
 import { useRouter } from 'next/navigation';
-import { AuthForm } from './common/auth-form';
+import { AuthForm } from '../common/auth-form';
 
 type Props = {
   setIsSignUp: (isSignUp: boolean) => void;

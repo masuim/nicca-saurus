@@ -8,8 +8,8 @@ import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import logo from '../../../public/images/logos/bg-removed-logo.png';
-import { SignInForm } from '@/components/sign-in-form';
-import { SignUpForm } from '@/components/sign-up-form';
+import { SignInForm } from '@/components/auth/sign-in-form';
+import { SignUpForm } from '@/components/auth/sign-up-form';
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);

@@ -1,7 +1,7 @@
 'use client';
 
 import { Header } from '@/components/layout/header';
-import { MainContents } from '@/components/main-contents';
+import { MainContents } from '@/components/pages/main/main-contents';
 import { SideMenu } from '@/components/side-menu/side-menu';
 import { useNicca } from '@/contexts/niicca-context';
 import { useSession } from 'next-auth/react';
