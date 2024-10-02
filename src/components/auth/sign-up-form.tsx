@@ -1,9 +1,9 @@
+import { AuthForm } from '@/components/common/auth-form';
 import { useFlashMessage } from '@/contexts/flash-message-context';
 import { useSignUpForm } from '@/hooks/use-auth-form';
 import { SignUpFormData } from '@/schemas/auth-schemas';
 import { signUpUser } from '@/services/auth-service';
 import { useRouter } from 'next/navigation';
-import { AuthForm } from './common/auth-form';
 
 type Props = {
   setIsSignUp: (isSignUp: boolean) => void;

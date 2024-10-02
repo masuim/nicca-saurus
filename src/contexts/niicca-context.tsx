@@ -21,7 +21,7 @@ const NiccaContext = createContext<NiccaContextType | undefined>(undefined);
 export const NiccaProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [hasActiveNicca, setHasActiveNicca] = useState(false);
   const [activeNicca, setActiveNicca] = useState<{ saurusType: SaurusType } | null>(null);
-
+  // TODO: useCallbackが最適？
   const refreshActiveNicca = useCallback(async () => {
     try {
       const response = await fetch('/api/nicca/active');

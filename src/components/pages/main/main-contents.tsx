@@ -1,7 +1,7 @@
 import { NiccaRegisterModal } from '@/components/common/modals/register';
 
 import { SaurusType } from '@/schemas/nicca-schemas';
-import { useEffect, ReactNode } from 'react';
+import { useCallback, ReactNode } from 'react';
 import { Calendar } from '@/components/common/calendar';
 import { CompleteButton } from '@/components/nicca/complete-button';
 import { NiccaEditButton } from '@/components/nicca/nicca-edit-button';
@@ -28,21 +28,19 @@ export const MainContents = ({
   refreshActiveNicca,
   activeNicca,
 }: Props) => {
-  useEffect(() => {
-    const checkActiveNicca = async () => {
-      await refreshActiveNicca();
-      if (!hasActiveNicca && !isRegisterModalOpen) {
-        setIsRegisterModalOpen(true);
-      } else if (hasActiveNicca && isRegisterModalOpen) {
-        setIsRegisterModalOpen(false);
-      }
-    };
-
-    checkActiveNicca();
+  // TODO: useCallbackが最適？
+  const checkActiveNicca = useCallback(async () => {
+    await refreshActiveNicca();
+    if (!hasActiveNicca && !isRegisterModalOpen) {
+      setIsRegisterModalOpen(true);
+    } else if (hasActiveNicca && isRegisterModalOpen) {
+      setIsRegisterModalOpen(false);
+    }
   }, [refreshActiveNicca, hasActiveNicca, isRegisterModalOpen, setIsRegisterModalOpen]);
 
   const onCloseRegisterModal = () => {
     closeRegisterModal();
+    checkActiveNicca();
   };
 
   return (
@@ -74,7 +72,7 @@ export const MainContents = ({
         <NiccaRegisterModal
           isOpen={isRegisterModalOpen}
           onClose={onCloseRegisterModal}
-          onSuccess={closeRegisterModal}
+          onSuccess={checkActiveNicca}
         />
       )}
     </main>
