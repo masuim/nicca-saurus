@@ -3,13 +3,13 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { Header } from '@/components/layout/header';
+import { Header } from '@/components/layout/Header';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
 import logo from '../../../public/images/logos/bg-removed-logo.png';
-import { SignInForm } from '@/components/auth/sign-in-form';
-import { SignUpForm } from '@/components/auth/sign-up-form';
+import { SignInForm } from '@/components/auth/SignInForm';
+import { SignUpForm } from '@/components/auth/SignUpForm';
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);

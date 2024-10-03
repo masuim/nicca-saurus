@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { Modal } from '@/components/ui/modal';
-import { useFlashMessage } from '@/contexts/flash-message-context';
+import { Button } from '@/components/ui/Button';
+import { Modal } from '@/components/ui/Modal';
+import { useFlashMessage } from '@/context/FlashMessageProvider';
 import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
 import { ApiResult } from '@/types/api-types';
 import { zodResolver } from '@hookform/resolvers/zod';

@@ -1,7 +1,8 @@
 'use client';
 
-import { AuthForm } from '@/components/common/auth-form';
-import { useFlashMessage } from '@/contexts/flash-message-context';
+import { AuthForm } from '@/components/common/AuthForm';
+import { useFlashMessage } from '@/context/FlashMessageProvider';
+
 import { useSignInForm } from '@/hooks/use-auth-form';
 import { SignInFormData } from '@/schemas/auth-schemas';
 import { signInUser } from '@/services/auth-service';

@@ -1,4 +1,4 @@
-import { useFlashMessage } from '@/contexts/flash-message-context';
+import { useFlashMessage } from '@/context/FlashMessageProvider';
 import { SignInFormData, SignUpFormData } from '@/schemas/auth-schemas';
 import { ApiResult } from '@/types/api-types';
 import { signIn, signOut } from 'next-auth/react';

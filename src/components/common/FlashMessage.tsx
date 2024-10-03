@@ -1,7 +1,8 @@
 'use client';
 
-import { Card, CardContent } from '@/components/ui/card';
-import { useFlashMessage } from '@/contexts/flash-message-context';
+import { Card, CardContent } from '@/components/ui/Card';
+import { useFlashMessage } from '@/context/FlashMessageProvider';
+
 import { cn } from '@/lib/utils';
 
 export const FlashMessage = () => {

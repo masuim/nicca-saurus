@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 
 export const CompleteButton = ({ className }: { className?: string }) => {
   const handleComplete = () => {

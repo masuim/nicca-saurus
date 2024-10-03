@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Edit } from 'lucide-react';
 
 export const NiccaEditButton = ({ className }: { className?: string }) => {

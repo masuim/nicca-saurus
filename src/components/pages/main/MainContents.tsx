@@ -1,13 +1,12 @@
-import { NiccaRegisterModal } from '@/components/common/modals/register';
-
+import { Calendar } from '@/components/common/Calendar';
+import { NiccaRegisterModal } from '@/components/common/modals/Register';
+import { SaurusImage } from '@/components/common/SaurusImage';
+import { CompleteButton } from '@/components/nicca/CompleteButton';
+import { NiccaDeleteButton } from '@/components/nicca/NiccaDeleteButton';
+import { NiccaEditButton } from '@/components/nicca/NiccaEditButton';
+import { NiccaMessage } from '@/components/nicca/NiccaMessage';
 import { SaurusType } from '@/schemas/nicca-schemas';
 import { useCallback, ReactNode } from 'react';
-import { Calendar } from '@/components/common/calendar';
-import { CompleteButton } from '@/components/nicca/complete-button';
-import { NiccaEditButton } from '@/components/nicca/nicca-edit-button';
-import { NiccaDeleteButton } from '@/components/nicca/nicca-delete-button';
-import { NiccaMessage } from '@/components/nicca/nicca-message';
-import { SaurusImage } from '@/components/common/saurus-image';
 
 // TODO: useEffectは使わないようにする。調査。
 type Props = {

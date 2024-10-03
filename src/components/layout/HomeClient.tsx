@@ -1,9 +1,10 @@
 'use client';
 
-import { Header } from '@/components/layout/header';
-import { MainContents } from '@/components/pages/main/main-contents';
-import { SideMenu } from '@/components/side-menu/side-menu';
-import { useNicca } from '@/contexts/niicca-context';
+import { Header } from '@/components/layout/Header';
+import { MainContents } from '@/components/pages/main/MainContents';
+import { SideMenu } from '@/components/side-menu/SideMenu';
+
+import { useNicca } from '@/context/NiccaProvider';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
