@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent } from '@/components/ui/Card';
+import { Card, CardContent } from '@/components/elements/Card';
 import { useFlashMessage } from '@/context/FlashMessageProvider';
 
 import { cn } from '@/lib/utils';

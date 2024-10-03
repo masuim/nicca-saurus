@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import appLogo from '../../../public/images/app-name/app-name-2column.png';
-import { MenuButton } from './MenuButton';
+import { MenuButton } from './side-menu/MenuButton';
 import { useMenuItems } from '@/hooks/use-menu-items';
 
 type Props = {

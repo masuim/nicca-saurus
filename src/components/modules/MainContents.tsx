@@ -1,11 +1,12 @@
-import { Calendar } from '@/components/common/Calendar';
-import { NiccaRegisterModal } from '@/components/common/modals/Register';
-import { SaurusImage } from '@/components/common/SaurusImage';
-import { CompleteButton } from '@/components/nicca/CompleteButton';
-import { NiccaDeleteButton } from '@/components/nicca/NiccaDeleteButton';
-import { NiccaEditButton } from '@/components/nicca/NiccaEditButton';
-import { NiccaMessage } from '@/components/nicca/NiccaMessage';
-import { SaurusType } from '@/schemas/nicca-schemas';
+import { SaurusImage } from '@/components/elements/SaurusImage';
+import { Calendar } from '@/components/modules/calendar/Calendar';
+import { NiccaCompleteButton } from '@/components/modules/nicca/NiccaCompleteButton';
+import { NiccaDeleteButton } from '@/components/modules/nicca/NiccaDeleteButton';
+import { NiccaEditButton } from '@/components/modules/nicca/NiccaEditButton';
+
+import { NiccaMessage } from '@/components/modules/nicca/NiccaMessage';
+import { NiccaRegisterModal } from '@/components/modules/nicca/NiccaRegisterModal';
+import { SaurusType } from '@/schemas/nicca/nicca-schemas';
 import { useCallback, ReactNode } from 'react';
 
 // TODO: useEffectは使わないようにする。調査。
@@ -54,7 +55,7 @@ export const MainContents = ({
               />
               <div className="mt-4 flex w-full flex-col items-center sm:mt-0 sm:w-1/2 md:w-2/3">
                 <div className="flex w-full max-w-[300px] justify-center">
-                  <CompleteButton className="grow" />
+                  <NiccaCompleteButton className="grow" />
                   <NiccaEditButton className="ml-2 w-12" />
                   <NiccaDeleteButton className="ml-2 w-12" />
                 </div>

@@ -10,7 +10,7 @@ import {
   type ControllerProps as RHFControllerProps,
 } from 'react-hook-form';
 
-import { Label } from '@/components/ui/Label';
+import { Label } from '@/components/elements/Label';
 import { cn } from '@/lib/utils';
 
 const Form = useFormContext;

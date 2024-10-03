@@ -1,5 +1,5 @@
 'use client';
-import { SaurusType } from '@/schemas/nicca-schemas';
+import { SaurusType } from '@/schemas/nicca/nicca-schemas';
 import React, {
   createContext,
   useContext,

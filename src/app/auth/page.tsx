@@ -1,15 +1,16 @@
 'use client';
-
+// TODO: ここはサーバーサイド。useclientだめ
 import Image from 'next/image';
 import { useState } from 'react';
 
 import { Header } from '@/components/layout/Header';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/elements/Card';
 
 import logo from '../../../public/images/logos/bg-removed-logo.png';
-import { SignInForm } from '@/components/auth/SignInForm';
-import { SignUpForm } from '@/components/auth/SignUpForm';
+
+import { SignUpForm } from '@/components/modules/auth/SignUpForm';
+import { SignInForm } from '@/components/modules/auth/SignInForm';
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);

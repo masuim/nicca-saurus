@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Nicca } from '@/schemas/nicca-schemas';
+import { Nicca } from '@/schemas/nicca/nicca-schemas';
 import { ApiResult } from '@/types/api-types';
 import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';

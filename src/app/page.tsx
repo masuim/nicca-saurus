@@ -1,4 +1,4 @@
-import { HomeClient } from '@/components/layout/HomeClient';
+import { HomeClient } from '@/components/pages/HomeClient';
 
 export default function Home() {
   return <HomeClient />;

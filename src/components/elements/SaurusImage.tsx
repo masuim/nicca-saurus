@@ -1,4 +1,4 @@
-import { SaurusType } from '@/schemas/nicca-schemas';
+import { SaurusType } from '@/schemas/nicca/nicca-schemas';
 
 type Props = {
   saurusType: SaurusType;

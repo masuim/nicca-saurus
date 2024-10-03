@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
+import { Button } from '@/components/elements/Button';
+import { Modal } from '@/components/elements/Modal';
 import { useFlashMessage } from '@/context/FlashMessageProvider';
-import { Nicca, NiccaSchema } from '@/schemas/nicca-schemas';
+import { Nicca, NiccaSchema } from '@/schemas/nicca/nicca-schemas';
 import { ApiResult } from '@/types/api-types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

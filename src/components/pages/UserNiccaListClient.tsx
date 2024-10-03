@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Nicca } from '@/schemas/nicca-schemas';
+import { Nicca } from '@/schemas/nicca/nicca-schemas';
 import { Header } from '@/components/layout/Header';
 
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/elements/Button';
 import Link from 'next/link';
-import { SideMenu } from '@/components/side-menu/SideMenu';
+import { SideMenu } from '@/components/layout/SideMenu';
 
 export const UserNiccaListClient = () => {
   const [userNiccas, setUserNiccas] = useState<Nicca[]>([]);

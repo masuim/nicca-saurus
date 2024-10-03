@@ -1,6 +1,12 @@
-import { Button } from '@/components/ui/Button';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/Form';
-import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/elements/Button';
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/elements/Form';
+import { Input } from '@/components/elements/Input';
 // eslint-disable-next-line import/named
 import { FormProvider, Path, UseFormReturn } from 'react-hook-form';
 
