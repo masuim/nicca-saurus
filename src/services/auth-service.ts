@@ -50,7 +50,7 @@ export const useSignOut = () => {
     try {
       await signOut({ redirect: false });
       showFlashMessage('サインアウトしました', 'success');
-      router.push('/auth');
+      router.push('/');
     } catch (error) {
       showFlashMessage('サインアウト中にエラーが発生しました', 'error');
     }

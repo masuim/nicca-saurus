@@ -1,5 +1,5 @@
-import { HomeClient } from '@/components/modules/HomeClient';
+import { AuthClient } from '@/components/pages/AuthClient';
 
-export default function Home() {
-  return <HomeClient />;
+export default function AuthPage() {
+  return <AuthClient />;
 }

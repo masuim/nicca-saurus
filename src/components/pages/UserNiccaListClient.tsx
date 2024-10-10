@@ -39,7 +39,7 @@ export const UserNiccaListClient = () => {
         ))}
       </ul>
       <div className="mt-6">
-        <Link href="/">
+        <Link href="/main">
           <Button variant="outline">ダッシュボードに戻る</Button>
         </Link>
       </div>

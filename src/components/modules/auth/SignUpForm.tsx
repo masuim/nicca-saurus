@@ -25,7 +25,7 @@ export const SignUpForm = ({ setIsSignUp }: Props) => {
       }
 
       showFlashMessage('サインアップに成功しました', 'success');
-      router.push('/');
+      router.push('/main');
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'サインアップ中に予期せぬエラーが発生しました';

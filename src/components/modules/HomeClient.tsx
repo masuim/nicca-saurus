@@ -1,6 +1,7 @@
 'use client';
 
 import { Header } from '@/components/layout/Header';
+import { Layout } from '@/components/layout/Layout';
 import { SideMenu } from '@/components/layout/SideMenu';
 
 import { MainContents } from '@/components/modules/MainContents';
@@ -18,7 +19,7 @@ export const HomeClient = () => {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.push('/auth');
+      router.push('/');
     }
   }, [status, router]);
 
@@ -36,23 +37,17 @@ export const HomeClient = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <div className="lg:hidden">
-        <Header openRegisterDialog={openRegisterDialog} />
-      </div>
-      <div className="flex flex-1 flex-col lg:flex-row">
-        <SideMenu openRegisterDialog={openRegisterDialog} hasActiveNicca={hasActiveNicca} />
-        <MainContents
-          isRegisterDialogOpen={isRegisterDialogOpen}
-          setIsRegisterDialogOpen={setIsRegisterDialogOpen}
-          closeRegisterDialog={closeRegisterDialog}
-          hasActiveNicca={hasActiveNicca}
-          refreshActiveNicca={refreshActiveNicca}
-          activeNicca={activeNicca}
-        >
-          <div>main-contents</div>
-        </MainContents>
-      </div>
-    </div>
+    <Layout hasActiveNicca={hasActiveNicca} openRegisterDialog={openRegisterDialog}>
+      <MainContents
+        isRegisterDialogOpen={isRegisterDialogOpen}
+        setIsRegisterDialogOpen={setIsRegisterDialogOpen}
+        closeRegisterDialog={closeRegisterDialog}
+        hasActiveNicca={hasActiveNicca}
+        refreshActiveNicca={refreshActiveNicca}
+        activeNicca={activeNicca}
+      >
+        <div>main-contents</div>
+      </MainContents>
+    </Layout>
   );
 };
