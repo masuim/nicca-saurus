@@ -1,4 +1,3 @@
-import { SaurusImage } from '@/components/elements/SaurusImage';
 import { Calendar } from '@/components/modules/calendar/Calendar';
 import { NiccaCompleteButton } from '@/components/modules/nicca/NiccaCompleteButton';
 import { NiccaDeleteButton } from '@/components/modules/nicca/NiccaDeleteButton';
@@ -6,6 +5,7 @@ import { NiccaEditButton } from '@/components/modules/nicca/NiccaEditButton';
 
 import { NiccaMessage } from '@/components/modules/nicca/NiccaMessage';
 import { NiccaRegisterDialog } from '@/components/modules/nicca/NiccaRegisterDialog';
+import { SaurusImage } from '@/components/modules/nicca/SaurusImage';
 
 import { SaurusType } from '@/schemas/nicca/nicca-schemas';
 import { useCallback, ReactNode } from 'react';

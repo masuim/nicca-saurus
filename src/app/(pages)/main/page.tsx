@@ -1,4 +1,4 @@
-import { HomeClient } from '@/components/modules/HomeClient';
+import { HomeClient } from '@/components/containers/HomeClient';
 
 export default function Home() {
   return <HomeClient />;

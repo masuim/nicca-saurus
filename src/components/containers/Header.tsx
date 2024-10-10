@@ -7,7 +7,7 @@ import { useState } from 'react';
 import logo from '../../../public/images/logos/bg-removed-logo.png';
 
 import { useMenuItems } from '@/hooks/use-menu-items';
-import { HamburgerMenu } from '@/components/layout/HamburgerMenu';
+import { HamburgerMenu } from '@/components/modules/side-menu/HamburgerMenu';
 
 type Props = {
   openRegisterDialog: () => void;

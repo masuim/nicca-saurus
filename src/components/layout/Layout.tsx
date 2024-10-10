@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { Header } from '@/components/layout/Header';
-import { SideMenu } from '@/components/layout/SideMenu';
+import { Header } from '@/components/containers/Header';
+import { SideMenu } from '@/components/containers/SideMenu';
 
 interface LayoutProps {
   children: ReactNode;

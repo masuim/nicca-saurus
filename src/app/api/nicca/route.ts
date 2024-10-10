@@ -1,9 +1,10 @@
 import { prisma } from '@/lib/prisma';
 import { Nicca, NiccaSchema, SAURUS_TYPES } from '@/schemas/nicca/nicca-schemas';
-import { ApiResult } from '@/types/api-types';
+
 import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
+import { ApiResult } from '@/schemas/api/api-schema';
 
 // TODO: prisma使う場合は、api配下ではなくて良い？調査したい。これだと通信回数が増えちゃって遅い？？
 export const POST = async (request: Request): Promise<NextResponse<ApiResult<Nicca>>> => {

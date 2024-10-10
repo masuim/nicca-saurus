@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import appLogo from '../../../public/images/logos/bg-removed-logo.png';
-import { MenuButton } from './side-menu/MenuButton';
+import { MenuButton } from '../modules/side-menu/MenuButton';
 import { useMenuItems } from '@/hooks/use-menu-items';
 
 type Props = {

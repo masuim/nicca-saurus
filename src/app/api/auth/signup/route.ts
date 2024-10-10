@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { NextResponse } from 'next/server';
 
 import { prisma } from '@/lib/prisma';
-import { ApiResult } from '@/types/api-types';
+import { ApiResult } from '@/schemas/api/api-schema';
 
 export const POST = async (
   req: Request,

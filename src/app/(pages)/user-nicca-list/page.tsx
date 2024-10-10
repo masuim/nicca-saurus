@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 import { authOptions } from '../../api/auth/[...nextauth]/route';
-import { UserNiccaListClient } from '@/components/pages/UserNiccaListClient';
+import { UserNiccaListClient } from '@/components/containers/UserNiccaListClient';
 
 export default async function UserNiccaList() {
   const session = await getServerSession(authOptions);

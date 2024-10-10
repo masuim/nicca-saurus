@@ -1,8 +1,9 @@
 import { Button } from '@/components/elements/Button';
 import { CusutomDialog } from '@/components/elements/Dialog';
 import { useFlashMessage } from '@/providers/FlashMessageProvider';
+import { ApiResult } from '@/schemas/api/api-schema';
 import { Nicca, NiccaSchema } from '@/schemas/nicca/nicca-schemas';
-import { ApiResult } from '@/types/api-types';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';

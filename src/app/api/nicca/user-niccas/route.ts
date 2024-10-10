@@ -1,9 +1,10 @@
 import { prisma } from '@/lib/prisma';
 import { Nicca } from '@/schemas/nicca/nicca-schemas';
-import { ApiResult } from '@/types/api-types';
+
 import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { authOptions } from '../../auth/[...nextauth]/route';
+import { ApiResult } from '@/schemas/api/api-schema';
 
 export const GET = async (): Promise<NextResponse<ApiResult<Nicca[]>>> => {
   try {

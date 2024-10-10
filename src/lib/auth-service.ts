@@ -1,6 +1,7 @@
 import { useFlashMessage } from '@/providers/FlashMessageProvider';
+import { ApiResult } from '@/schemas/api/api-schema';
 import { SignInFormData, SignUpFormData } from '@/schemas/auth/auth-schemas';
-import { ApiResult } from '@/types/api-types';
+
 import { signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
