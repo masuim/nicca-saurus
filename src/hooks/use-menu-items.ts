@@ -1,4 +1,4 @@
-import { useSignOut } from '@/services/auth-service';
+import { useSignOut } from '@/lib/auth-service';
 
 export type MenuItem = {
   label: string;
@@ -6,14 +6,14 @@ export type MenuItem = {
   href?: string;
 };
 
-export const useMenuItems = (openRegisterModal: () => void) => {
+export const useMenuItems = (openRegisterDialog: () => void) => {
   const signOutUser = useSignOut();
 
   const menuItems: MenuItem[] = [
     {
       label: '日課登録',
       onClick: () => {
-        openRegisterModal();
+        openRegisterDialog();
       },
     },
     { label: '日課一覧', href: '/user-nicca-list' },

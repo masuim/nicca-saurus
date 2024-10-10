@@ -30,9 +30,28 @@
         "assert": "either",
         "depth": 25
       }
-    ],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    ]
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-console": ["warn", { "allow": ["warn", "error"] }]
+      },
+      "env": {
+        "development": {
+          "rules": {
+            "no-console": "warn"
+          }
+        },
+        "production": {
+          "rules": {
+            "no-console": ["error", { "allow": ["warn", "error"] }]
+          }
+        }
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"

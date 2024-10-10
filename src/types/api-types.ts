@@ -1,4 +1,4 @@
-import { WeekSchema } from '@/schemas/nicca-schemas';
+import { WeekSchema } from '@/schemas/nicca/nicca-schemas';
 import { z } from 'zod';
 
 export type ApiResult<T> =

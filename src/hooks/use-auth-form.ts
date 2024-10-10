@@ -1,4 +1,4 @@
-import { signInFormSchema, signUpFormSchema } from '@/schemas/auth-schemas';
+import { signInFormSchema, signUpFormSchema } from '@/schemas/auth/auth-schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -12,7 +12,7 @@ export const useSignInForm = () => {
     },
   });
 };
-
+// TODO:useFormState/useActionStateを使って、サインアップフォームを作成するのはどう？
 export const useSignUpForm = () => {
   return useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),

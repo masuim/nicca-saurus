@@ -1,0 +1,154 @@
+.customCalendar {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+}
+
+.customDay {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.currentDay {
+  background-color: #f5d76e;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.customMonth {
+  font-weight: bold;
+  color: #333;
+}
+
+.customWeekDay {
+  color: #666;
+}
+
+.currentMonthDay {
+  color: #333;
+  font-weight: bold;
+}
+
+.otherMonthDay {
+  color: #999;
+}
+
+.dayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+
+.meatImage {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+}
+
+.customHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #082f68;
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.customHeaderText {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.customHeader button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.customHeader button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calendar :global(.react-datepicker) {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.8rem;
+  margin: 0 auto;
+}
+
+.calendar :global(.react-datepicker__month-container) {
+  width: 100%;
+}
+
+.calendar :global(.react-datepicker__month) {
+  margin: 0;
+  padding: 0.4rem;
+}
+
+.calendar :global(.react-datepicker__day-name),
+.calendar :global(.react-datepicker__day) {
+  width: 14.28%;
+  margin: 0;
+  padding: 0.5rem 0;
+  line-height: 1.7rem;
+}
+
+@media (min-width: 425px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 0.9rem;
+  }
+  .dayContainer {
+    font-size: 1rem;
+  }
+  .meatImage {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (min-width: 640px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 1rem;
+  }
+  .dayContainer {
+    font-size: 1.1rem;
+  }
+  .meatImage {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 1.1rem;
+  }
+  .dayContainer {
+    font-size: 1.2rem;
+  }
+  .meatImage {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .calendar :global(.react-datepicker) {
+    font-size: 1.2rem;
+  }
+  .dayContainer {
+    font-size: 1.3rem;
+  }
+  .meatImage {
+    width: 25px;
+    height: 25px;
+  }
+}
