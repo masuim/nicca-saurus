@@ -27,16 +27,14 @@ export const Header = ({ openRegisterModal }: Props) => {
 
   return (
     <header className="flex h-16 items-center justify-between bg-primary px-4 lg:hidden">
-      <Link href="/">
-        <Image
-          src={logo}
-          alt="App Logo"
-          width={64}
-          height={64}
-          className="mt-1 h-full w-auto object-contain"
-          priority
-        />
-      </Link>
+      <Image
+        src={logo}
+        alt="App Logo"
+        width={64}
+        height={64}
+        className="mt-1 h-full w-auto object-contain"
+        priority
+      />
       {session && (
         <>
           <button onClick={toggleMenu} className="text-white">

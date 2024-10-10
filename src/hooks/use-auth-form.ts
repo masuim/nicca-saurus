@@ -12,7 +12,7 @@ export const useSignInForm = () => {
     },
   });
 };
-
+// TODO:useFormState/useActionStateを使って、サインアップフォームを作成するのはどう？
 export const useSignUpForm = () => {
   return useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),

@@ -1,8 +1,6 @@
 'use client';
 
-import { Card, CardContent } from '@/components/elements/Card';
 import { useFlashMessage } from '@/context/FlashMessageProvider';
-
 import { cn } from '@/lib/utils';
 
 export const FlashMessage = () => {
@@ -24,19 +22,19 @@ export const FlashMessage = () => {
 
   return (
     <div className="fixed right-4 top-20 z-50 animate-fade-in-down">
-      <Card
+      <div
         className={cn(
-          'max-w-sm border-2 bg-white/80 shadow-lg transition-all duration-300 ease-in-out',
+          'max-w-sm rounded-lg border-2 bg-white/80 shadow-lg transition-all duration-300 ease-in-out',
           bgColor,
         )}
       >
-        <CardContent className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4">
           <div className={cn('text-sm font-bold', textColor)}>{flashMessage.message}</div>
           <button onClick={hideFlashMessage} className={cn('ml-4 hover:text-gray-700', textColor)}>
             ×
           </button>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };
