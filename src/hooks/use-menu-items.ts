@@ -1,4 +1,4 @@
-import { useSignOut } from '@/services/auth-service';
+import { useSignOut } from '@/lib/auth-service';
 
 export type MenuItem = {
   label: string;

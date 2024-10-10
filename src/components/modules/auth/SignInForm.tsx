@@ -4,8 +4,9 @@ import { AuthForm } from '@/components/modules/auth/AuthForm';
 import { useFlashMessage } from '@/context/FlashMessageProvider';
 
 import { useSignInForm } from '@/hooks/use-auth-form';
+import { signInUser } from '@/lib/auth-service';
 import { SignInFormData } from '@/schemas/auth/auth-schemas';
-import { signInUser } from '@/services/auth-service';
+
 import { useRouter } from 'next/navigation';
 
 type Props = {
