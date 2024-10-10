@@ -1,6 +1,6 @@
 'use client';
 
-import { useFlashMessage } from '@/context/FlashMessageProvider';
+import { useFlashMessage } from '@/providers/FlashMessageProvider';
 import { cn } from '@/lib/utils';
 
 export const FlashMessage = () => {

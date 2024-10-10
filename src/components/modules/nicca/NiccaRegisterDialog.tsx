@@ -1,6 +1,6 @@
 import { Button } from '@/components/elements/Button';
 import { CusutomDialog } from '@/components/elements/Dialog';
-import { useFlashMessage } from '@/context/FlashMessageProvider';
+import { useFlashMessage } from '@/providers/FlashMessageProvider';
 import { Nicca, NiccaSchema } from '@/schemas/nicca/nicca-schemas';
 import { ApiResult } from '@/types/api-types';
 import { zodResolver } from '@hookform/resolvers/zod';

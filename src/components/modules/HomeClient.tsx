@@ -3,7 +3,7 @@
 import { Layout } from '@/components/layout/Layout';
 import { MainContents } from '@/components/MainContents';
 
-import { useNicca } from '@/context/NiccaProvider';
+import { useNicca } from '@/providers/NiccaProvider';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';

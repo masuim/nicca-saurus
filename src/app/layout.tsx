@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-import { NiccaProvider } from '@/context/NiccaProvider';
+import { NiccaProvider } from '@/providers/NiccaProvider';
 import './globals.css';
 
-import { Providers } from '@/context/Providers';
-import { FlashMessageProvider } from '@/context/FlashMessageProvider';
+import { Providers } from '@/providers/Providers';
+import { FlashMessageProvider } from '@/providers/FlashMessageProvider';
 import { FlashMessage } from '@/components/modules/FlashMessage';
 
 export const metadata: Metadata = {
