@@ -5,25 +5,26 @@ import { NiccaDeleteButton } from '@/components/modules/nicca/NiccaDeleteButton'
 import { NiccaEditButton } from '@/components/modules/nicca/NiccaEditButton';
 
 import { NiccaMessage } from '@/components/modules/nicca/NiccaMessage';
-import { NiccaRegisterModal } from '@/components/modules/nicca/NiccaRegisterModal';
+import { NiccaRegisterDialog } from '@/components/modules/nicca/NiccaRegisterDialog';
+
 import { SaurusType } from '@/schemas/nicca/nicca-schemas';
 import { useCallback, ReactNode } from 'react';
 
 // TODO: useEffectは使わないようにする。調査。
 type Props = {
   children: ReactNode;
-  isRegisterModalOpen: boolean;
-  setIsRegisterModalOpen: (isOpen: boolean) => void;
-  closeRegisterModal: () => void;
+  isRegisterDialogOpen: boolean;
+  setIsRegisterDialogOpen: (isOpen: boolean) => void;
+  closeRegisterDialog: () => void;
   hasActiveNicca: boolean;
   refreshActiveNicca: () => Promise<void>;
   activeNicca: { saurusType: SaurusType } | null;
 };
 
 export const MainContents = ({
-  isRegisterModalOpen,
-  setIsRegisterModalOpen,
-  closeRegisterModal,
+  isRegisterDialogOpen,
+  setIsRegisterDialogOpen,
+  closeRegisterDialog,
   hasActiveNicca,
   refreshActiveNicca,
   activeNicca,
@@ -31,15 +32,15 @@ export const MainContents = ({
   // TODO: useCallbackが最適？
   const checkActiveNicca = useCallback(async () => {
     await refreshActiveNicca();
-    if (!hasActiveNicca && !isRegisterModalOpen) {
-      setIsRegisterModalOpen(true);
-    } else if (hasActiveNicca && isRegisterModalOpen) {
-      setIsRegisterModalOpen(false);
+    if (!hasActiveNicca && !isRegisterDialogOpen) {
+      setIsRegisterDialogOpen(true);
+    } else if (hasActiveNicca && isRegisterDialogOpen) {
+      setIsRegisterDialogOpen(false);
     }
-  }, [refreshActiveNicca, hasActiveNicca, isRegisterModalOpen, setIsRegisterModalOpen]);
+  }, [refreshActiveNicca, hasActiveNicca, isRegisterDialogOpen, setIsRegisterDialogOpen]);
 
-  const onCloseRegisterModal = () => {
-    closeRegisterModal();
+  const onCloseRegisterDialog = () => {
+    closeRegisterDialog();
     checkActiveNicca();
   };
 
@@ -68,10 +69,10 @@ export const MainContents = ({
           </div>
         </div>
       </div>
-      {isRegisterModalOpen && (
-        <NiccaRegisterModal
-          isOpen={isRegisterModalOpen}
-          onClose={onCloseRegisterModal}
+      {isRegisterDialogOpen && (
+        <NiccaRegisterDialog
+          isOpen={isRegisterDialogOpen}
+          onClose={onCloseRegisterDialog}
           onSuccess={checkActiveNicca}
         />
       )}

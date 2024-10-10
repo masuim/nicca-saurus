@@ -6,12 +6,12 @@ import { MenuButton } from './side-menu/MenuButton';
 import { useMenuItems } from '@/hooks/use-menu-items';
 
 type Props = {
-  openRegisterModal: () => void;
+  openRegisterDialog: () => void;
   hasActiveNicca: boolean;
 };
 
-export const SideMenu = ({ openRegisterModal }: Props) => {
-  const menuItems = useMenuItems(openRegisterModal);
+export const SideMenu = ({ openRegisterDialog }: Props) => {
+  const menuItems = useMenuItems(openRegisterDialog);
 
   return (
     <div className="hidden w-1/5 bg-primary p-4 text-white lg:block lg:border-l lg:border-gray-200">

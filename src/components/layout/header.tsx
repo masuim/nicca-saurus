@@ -11,15 +11,15 @@ import { useMenuItems } from '@/hooks/use-menu-items';
 import { HamburgerMenu } from '@/components/layout/HamburgerMenu';
 
 type Props = {
-  openRegisterModal: () => void;
+  openRegisterDialog: () => void;
 };
 
-export const Header = ({ openRegisterModal }: Props) => {
+export const Header = ({ openRegisterDialog }: Props) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = useMenuItems(() => {
     setIsOpen(false);
-    openRegisterModal();
+    openRegisterDialog();
   });
 
   const toggleMenu = () => setIsOpen(!isOpen);

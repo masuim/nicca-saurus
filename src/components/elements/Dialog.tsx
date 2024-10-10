@@ -1,14 +1,14 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import React from 'react';
 
-type ModalProps = {
+type Props = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
 };
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
+export const CusutomDialog = ({ isOpen, onClose, title, children }: Props) => {
   return (
     <Dialog
       open={isOpen}

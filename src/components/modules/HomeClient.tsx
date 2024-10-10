@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 export const HomeClient = () => {
   const { status } = useSession();
   const router = useRouter();
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
   const { hasActiveNicca, refreshActiveNicca, activeNicca } = useNicca();
 
   useEffect(() => {
@@ -22,30 +22,30 @@ export const HomeClient = () => {
     }
   }, [status, router]);
 
-  const openRegisterModal = () => {
+  const openRegisterDialog = () => {
     if (hasActiveNicca) {
       alert('途中の日課があります');
       return;
     }
-    setIsRegisterModalOpen(true);
+    setIsRegisterDialogOpen(true);
   };
 
-  const closeRegisterModal = () => {
-    setIsRegisterModalOpen(false);
+  const closeRegisterDialog = () => {
+    setIsRegisterDialogOpen(false);
     refreshActiveNicca();
   };
 
   return (
     <div className="flex min-h-screen flex-col">
       <div className="lg:hidden">
-        <Header openRegisterModal={openRegisterModal} />
+        <Header openRegisterDialog={openRegisterDialog} />
       </div>
       <div className="flex flex-1 flex-col lg:flex-row">
-        <SideMenu openRegisterModal={openRegisterModal} hasActiveNicca={hasActiveNicca} />
+        <SideMenu openRegisterDialog={openRegisterDialog} hasActiveNicca={hasActiveNicca} />
         <MainContents
-          isRegisterModalOpen={isRegisterModalOpen}
-          setIsRegisterModalOpen={setIsRegisterModalOpen}
-          closeRegisterModal={closeRegisterModal}
+          isRegisterDialogOpen={isRegisterDialogOpen}
+          setIsRegisterDialogOpen={setIsRegisterDialogOpen}
+          closeRegisterDialog={closeRegisterDialog}
           hasActiveNicca={hasActiveNicca}
           refreshActiveNicca={refreshActiveNicca}
           activeNicca={activeNicca}

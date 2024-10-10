@@ -22,7 +22,7 @@ export const UserNiccaListClient = () => {
   }, []);
 
   return (
-    <Layout hasActiveNicca={false} openRegisterModal={() => {}}>
+    <Layout hasActiveNicca={false} openRegisterDialog={() => {}}>
       <h1 className="mb-4 text-2xl font-bold">日課一覧</h1>
       <ul>
         {userNiccas.map((nicca, index) => (

@@ -1,5 +1,5 @@
 import { Button } from '@/components/elements/Button';
-import { Modal } from '@/components/elements/Modal';
+import { CusutomDialog } from '@/components/elements/Dialog';
 import { useFlashMessage } from '@/context/FlashMessageProvider';
 import { Nicca, NiccaSchema } from '@/schemas/nicca/nicca-schemas';
 import { ApiResult } from '@/types/api-types';
@@ -44,7 +44,7 @@ const registerNicca = async (nicca: Nicca): Promise<ApiResult<Nicca>> => {
   return data;
 };
 
-export const NiccaRegisterModal = ({ isOpen, onClose, onSuccess }: Props) => {
+export const NiccaRegisterDialog = ({ isOpen, onClose, onSuccess }: Props) => {
   const form = useForm<z.infer<typeof NiccaSchema>>({
     resolver: zodResolver(NiccaSchema),
     defaultValues: {
@@ -99,7 +99,7 @@ export const NiccaRegisterModal = ({ isOpen, onClose, onSuccess }: Props) => {
   if (!isOpen) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="日課登録">
+    <CusutomDialog isOpen={isOpen} onClose={onClose} title="日課登録">
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <input
           placeholder="日課を入力してください"
@@ -144,6 +144,6 @@ export const NiccaRegisterModal = ({ isOpen, onClose, onSuccess }: Props) => {
           </Button>
         </div>
       </form>
-    </Modal>
+    </CusutomDialog>
   );
 };

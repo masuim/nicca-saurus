@@ -5,18 +5,18 @@ import { SideMenu } from '@/components/layout/SideMenu';
 interface LayoutProps {
   children: ReactNode;
   hasActiveNicca: boolean;
-  openRegisterModal: () => void;
+  openRegisterDialog: () => void;
 }
 
-export const Layout = ({ children, hasActiveNicca, openRegisterModal }: LayoutProps) => {
+export const Layout = ({ children, hasActiveNicca, openRegisterDialog }: LayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col">
       <div className="lg:hidden">
-        <Header openRegisterModal={openRegisterModal} />
+        <Header openRegisterDialog={openRegisterDialog} />
       </div>
       <div className="flex flex-1 flex-col lg:flex-row">
         <main className="flex-1 p-4">{children}</main>
-        <SideMenu openRegisterModal={openRegisterModal} hasActiveNicca={hasActiveNicca} />
+        <SideMenu openRegisterDialog={openRegisterDialog} hasActiveNicca={hasActiveNicca} />
       </div>
     </div>
   );
